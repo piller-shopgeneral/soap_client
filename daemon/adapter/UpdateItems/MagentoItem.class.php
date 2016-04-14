@@ -2,7 +2,6 @@
 
 require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
 
-
 class MagentoItem {
 	
 	private $typeOfProduct = 'simple';#ProduktTyp
@@ -27,7 +26,7 @@ class MagentoItem {
 		
 	}
 	
-	public function getProductCreateEntityArray($type, $attributeSet){
+	public function getProductCreateEntityArray($type, $attributeSet, $magento_item_id){
 		
 		$catalogProductCreateEntityArray = null;
 		
@@ -35,6 +34,7 @@ class MagentoItem {
 							'categories' => $this->categories,
 							'websites' => array(1),
 							'name' => $this->name,
+							'sku' => $this->sku,
 							'description' => $this->description,
 							'short_description' => $this->short_description,
 							'weight' => $this->weight,
@@ -54,10 +54,15 @@ class MagentoItem {
 					$this->typeOfProduct, $attributeSet['set_id'], $this->sku, $productData);
 		}
 		
+// 		if($type === "update"){
+// 			$catalogProductCreateEntityArray = array(
+// 					$this->sku, $productData);
+// 			}
+
 		if($type === "update"){
 			$catalogProductCreateEntityArray = array(
-					$this->sku, $productData);
-			}
+					$magento_item_id, $productData);
+		}
 			
 		return $catalogProductCreateEntityArray;
 	}

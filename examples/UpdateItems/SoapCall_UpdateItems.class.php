@@ -48,9 +48,9 @@ class SoapCall_UpdateItems extends PlentySoapCall
 			
 			$itemsBaseResponse = $this->getItemsBase($this->lastUpdateFrom, $this->lastUpdateTo);
 			
-			$totalPages = $itemsBaseResponse->Pages-1;
+			$totalPages = $itemsBaseResponse->Pages;
 			$i = 0;
-			while($i <= $totalPages){
+			while($i < $totalPages){
 
 				$itemsBaseByPageResponse = $this->getItemsBaseByPage($this->lastUpdateFrom, $this->lastUpdateTo, $i);
 
@@ -84,7 +84,7 @@ class SoapCall_UpdateItems extends PlentySoapCall
 			{
 				$this->getLogger()->info(__FUNCTION__.'::  Starte Update for'.' ItemID: '.$itemBase->ItemID);
 				$magentoItem = $this->convertToMagentoItem($itemBase);
-				$magentoItemID = $this->pushItemToMagento($magentoItem);
+				$magentoItemID = $this->pushItemToMagento($magentoItem, $itemBase->ItemID);
 				if($magentoItemID != 1 && $magentoItemID != 0){
 					$this->getLogger()->info(__FUNCTION__.':: Add Item to mapping Table: '.$itemBase->ItemID.' :: '.$magentoItemID);
 					$this->addDBMapping($itemBase->ItemID, $magentoItemID);
@@ -129,18 +129,17 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		return $response;
 	}
 	
-	private function pushItemToMagento($magentoItem){
+	private function pushItemToMagento($magentoItem, $plenty_item_id){
 		$attributeSets = self::$magentoClient->call(self::$magentoSession, 'product_attribute_set.list');
 		$attributeSet = current($attributeSets);
-	
-		try{
-			$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product.create', $magentoItem->getProductCreateEntityArray("neu", $attributeSet));
-		} catch(Exception $e)
-		{
-			if($e->getMessage() === "Der Wert des Attributs \"SKU\" muss einmalig sein."){
-				$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product.update', $magentoItem->getProductCreateEntityArray("update", $attributeSet));
-			}
+		
+		$magento_item_id = $this->getMagentoItemID($plenty_item_id);
+		if(count($magento_item_id) > 0 ){
+			$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product.update', $magentoItem->getProductCreateEntityArray("update", $attributeSet, $magento_item_id));
+		}else {
+			$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product.create', $magentoItem->getProductCreateEntityArray("neu", $attributeSet, 0));
 		}
+		
 		return $result;
 	}
 	
@@ -166,14 +165,18 @@ class SoapCall_UpdateItems extends PlentySoapCall
 	}
 	
 	private function convertToMagentoItem($itemBase){
-		
+
 		$idArr = $this->getCategoryIDArray($itemBase);
  		$magento_category_ids = $this->getMagentoCategoryID($idArr);
 
 		$itemTexts = $this->getItemTexts($itemBase->ItemID);
 		
 		$item = new MagentoItem();
-		$item->setSKU($itemBase->ItemNo);
+		if($itemBase->ItemNo == ""){
+			$item->setSKU("TMP".$itemBase->ItemID);
+		}else {
+			$item->setSKU($itemBase->ItemNo);
+		}
 		$item->setName($itemTexts->ItemTexts->item[0]->Name);
 		$item->setCategory($magento_category_ids);
 		$item->setDescription($itemTexts->ItemTexts->item[0]->LongDescription);
@@ -225,6 +228,13 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		$query = 'REPLACE INTO `plenty_last_items_update` '.DBUtils::buildInsert(	array(	'id' => 1, 'last_update'	=>	$lastUpdateTill));
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
 		DBQuery::getInstance()->replace($query);
+	}
+	
+	private function getMagentoItemID($plenty_item_id){
+		$query = 'SELECT `magento_item_id` FROM `plenty_magento_item_mapping`'.DBUtils::buildWhere( array( 'plenty_item_id' => $plenty_item_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result->fetchAssoc()["magento_item_id"];
 	}
 	
 	private function getMagentoCategoryID($plenty_category_id){
