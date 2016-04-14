@@ -187,7 +187,7 @@ class Adapter_UpdateItems extends PlentySoapCall
 		$item->setName($itemTexts->ItemTexts->item[0]->Name);
 		$item->setCategory($magento_category_ids);
 		$item->setDescription($itemTexts->ItemTexts->item[0]->LongDescription);
-		$item->setShortDescription($itemTexts->ItemTexts->item[0]->MetaDescription); //$itemTexts->ItemTexts->item[0]->ShortDescription
+		$item->setShortDescription($itemTexts->ItemTexts->item[0]->ShortDescription);
 		$item->setWeight($itemBase->PriceSet->WeightInGramm);
 		if($itemBase->Availability->Inactive === 0){
 			$item->setStatus(1);
