@@ -46,17 +46,16 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		$i = 0;
 		while($i < $totalPages){
 			$itemByPage = $this->getItemsImagesByPage($this->lastUpdateFrom, $this->lastUpdateTo, $i);
-	
+			
 			$e = 0;
 			while($e < count($itemByPage->ItemsImages->item)){
-
-				$sku = $this->getSKUfromItemID($itemByPage->ItemsImages->item[$e]->ItemID);
-				$this->getLogger()->info(__FUNCTION__.'::  Add Image for'.' Item: '.$sku);
+				$magento_item_id = $this->getMagentoItemID($itemByPage->ItemsImages->item[$e]->ItemID);
+				$this->getLogger()->info(__FUNCTION__.'::  Add Image for'.' Item: '.$magento_item_id);
 				$imageFile = $this->getImageFile($itemByPage->ItemsImages->item[$e]);
-				$this->sendImageCall($sku, $imageFile);
+				$this->sendImageCall($magento_item_id, $imageFile);
 				$e++;
 			}
-				
+			
 			$i++;
 		}
 		$this->setLastUpdate($this->lastUpdateTo);
@@ -75,14 +74,8 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		$image = file_get_contents ( $imgUrl );
 		if ($image !== false) {
 			return base64_encode ( $image );
+			
 		}
-	}
-	
-	public function getSKUfromItemID($itemID){
-		$oPlentySoapRequest_SearchItemsSKU = new PlentySoapRequest_SearchItemsSKU();
-		$oPlentySoapRequest_SearchItemsSKU->ItemID = $itemID;
-		$response = $this->getPlentySoap()->SearchItemsSKU($oPlentySoapRequest_SearchItemsSKU);
-		return $response->ItemsList->item[0]->ItemNo;
 	}
 	
 	public function getImageFile($imageItem){
@@ -95,10 +88,10 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		return $file;
 	}
 	
-	public function sendImageCall($sku, $file){
+	public function sendImageCall($magento_item_id, $file){
 		try{
 			$result = self::$magentoClient->call ( self::$magentoSession, 'catalog_product_attribute_media.create', array (
-					$sku,
+					$magento_item_id,
 					array (
 							'file' => $file,
 							'label' => 'PlentyMarkets Image',
@@ -123,6 +116,13 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		$oPlentySoapRequest_GetItemsImages->Page = $page;
 		$response = $this->getPlentySoap()->GetItemsImages($oPlentySoapRequest_GetItemsImages);
 		return $response;
+	}
+	
+	private function getMagentoItemID($plenty_item_id){
+		$query = 'SELECT `magento_item_id` FROM `plenty_magento_item_mapping`'.DBUtils::buildWhere( array( 'plenty_item_id' => $plenty_item_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result->fetchAssoc()["magento_item_id"];
 	}
 	
 	private function checkLastUpdate(){
