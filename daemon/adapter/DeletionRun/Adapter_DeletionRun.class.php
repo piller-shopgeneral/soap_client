@@ -1,6 +1,8 @@
 <?php
 
 require_once ROOT.'lib/soap/call/PlentySoapCall.abstract.php';
+require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
+
 
 /**
  * Save all country of delivery names to local datatable.

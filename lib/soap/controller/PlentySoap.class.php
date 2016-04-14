@@ -1,6 +1,6 @@
 <?php
 
-// generated Wed, 13 Apr 2016 12:44:47 +0200
+// generated Thu, 14 Apr 2016 08:37:42 +0200
 
 
 /**
@@ -437,7 +437,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetAuthentificationToken(PlentySoapRequest_GetAuthentificationToken $oLogin)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetAuthentificationToken.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetAuthentificationToken.class.php");
 		return parent::__soapCall("GetAuthentificationToken",array($oLogin));
 	}
 	
@@ -452,7 +452,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetServerTime()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetServerTime.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetServerTime.class.php");
 		return parent::__soapCall("GetServerTime",array());
 	}
 	
@@ -467,7 +467,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetPlentyMarketsVersion()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetPlentyMarketsVersion.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetPlentyMarketsVersion.class.php");
 		return parent::__soapCall("GetPlentyMarketsVersion",array());
 	}
 	
@@ -482,7 +482,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetVATConfig(PlentySoapRequest_GetVATConfig $oVatConfig)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetVATConfig.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetVATConfig.class.php");
 		return parent::__soapCall("GetVATConfig",array($oVatConfig));
 	}
 	
@@ -497,7 +497,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDynamicFormats()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDynamicFormats.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDynamicFormats.class.php");
 		return parent::__soapCall("GetDynamicFormats",array());
 	}
 	
@@ -512,7 +512,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetDynamicImport(PlentySoapRequest_SetDynamicImport $oPlentySoapRequest_SetDynamicImport)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetDynamicImport.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetDynamicImport.class.php");
 		return parent::__soapCall("SetDynamicImport",array($oPlentySoapRequest_SetDynamicImport));
 	}
 	
@@ -527,7 +527,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDynamicExport(PlentySoapRequest_GetDynamicExport $oPlentySoapRequest_GetDynamicExport)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDynamicExport.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDynamicExport.class.php");
 		return parent::__soapCall("GetDynamicExport",array($oPlentySoapRequest_GetDynamicExport));
 	}
 	
@@ -542,7 +542,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDynamicImportStack()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDynamicImportStack.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDynamicImportStack.class.php");
 		return parent::__soapCall("GetDynamicImportStack",array());
 	}
 	
@@ -557,7 +557,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetWebshopSettings(PlentySoapRequest_GetWebshopSettings $oPlentySoapRequest_GetWebshopSettings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetWebshopSettings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetWebshopSettings.class.php");
 		return parent::__soapCall("GetWebshopSettings",array($oPlentySoapRequest_GetWebshopSettings));
 	}
 	
@@ -572,7 +572,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomers(PlentySoapRequest_GetCustomers $oCustomersRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomers.class.php");
 		return parent::__soapCall("GetCustomers",array($oCustomersRequest));
 	}
 	
@@ -587,7 +587,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomersNewsletterSubscriptions(PlentySoapRequest_GetCustomersNewsletterSubscriptions $oCustomersNewsletterSubscriptionsRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomersNewsletterSubscriptions.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomersNewsletterSubscriptions.class.php");
 		return parent::__soapCall("GetCustomersNewsletterSubscriptions",array($oCustomersNewsletterSubscriptionsRequest));
 	}
 	
@@ -602,7 +602,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomersSchedulers(PlentySoapRequest_GetCustomersSchedulers $oCustomersSchedulersRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomersSchedulers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomersSchedulers.class.php");
 		return parent::__soapCall("GetCustomersSchedulers",array($oCustomersSchedulersRequest));
 	}
 	
@@ -617,7 +617,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetCustomers(PlentySoapRequest_SetCustomers $oSetCustomerRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetCustomers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetCustomers.class.php");
 		return parent::__soapCall("SetCustomers",array($oSetCustomerRequest));
 	}
 	
@@ -632,7 +632,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomerNotes(PlentySoapRequest_GetCustomerNotes $oGetCustomerNotesRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomerNotes.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomerNotes.class.php");
 		return parent::__soapCall("GetCustomerNotes",array($oGetCustomerNotesRequest));
 	}
 	
@@ -647,7 +647,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddCustomerNote(PlentySoapRequest_AddCustomerNote $oAddCustomerNotesRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddCustomerNote.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddCustomerNote.class.php");
 		return parent::__soapCall("AddCustomerNote",array($oAddCustomerNotesRequest));
 	}
 	
@@ -662,7 +662,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetBankCreditCardData(PlentySoapRequest_SetBankCreditCardData $oPlentySoapRequest_SetBankCreditCardData)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetBankCreditCardData.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetBankCreditCardData.class.php");
 		return parent::__soapCall("SetBankCreditCardData",array($oPlentySoapRequest_SetBankCreditCardData));
 	}
 	
@@ -677,7 +677,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomerOrders(PlentySoapRequest_GetCustomerOrders $oPlentySoapRequest_GetCustomerOrders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomerOrders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomerOrders.class.php");
 		return parent::__soapCall("GetCustomerOrders",array($oPlentySoapRequest_GetCustomerOrders));
 	}
 	
@@ -692,7 +692,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomerDeliveryAddresses(PlentySoapRequest_GetCustomerDeliveryAddresses $oPlentySoapRequest_GetCustomerDeliveryAddresses)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomerDeliveryAddresses.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomerDeliveryAddresses.class.php");
 		return parent::__soapCall("GetCustomerDeliveryAddresses",array($oPlentySoapRequest_GetCustomerDeliveryAddresses));
 	}
 	
@@ -707,7 +707,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetCustomerDeliveryAddresses(PlentySoapRequest_SetCustomerDeliveryAddresses $oPlentySoapRequest_SetCustomerDeliveryAddresses)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetCustomerDeliveryAddresses.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetCustomerDeliveryAddresses.class.php");
 		return parent::__soapCall("SetCustomerDeliveryAddresses",array($oPlentySoapRequest_SetCustomerDeliveryAddresses));
 	}
 	
@@ -722,7 +722,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomerClasses()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomerClasses.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomerClasses.class.php");
 		return parent::__soapCall("GetCustomerClasses",array());
 	}
 	
@@ -737,7 +737,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCountriesOfDelivery(PlentySoapRequest_GetCountriesOfDelivery $oPlentySoapRequest_GetCountriesOfDelivery)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCountriesOfDelivery.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCountriesOfDelivery.class.php");
 		return parent::__soapCall("GetCountriesOfDelivery",array($oPlentySoapRequest_GetCountriesOfDelivery));
 	}
 	
@@ -752,7 +752,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDeleteLog(PlentySoapRequest_GetDeleteLog $oPlentySoapRequest_GetDeleteLog)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDeleteLog.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDeleteLog.class.php");
 		return parent::__soapCall("GetDeleteLog",array($oPlentySoapRequest_GetDeleteLog));
 	}
 	
@@ -767,7 +767,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsDefaultCategories(PlentySoapRequest_SetItemsDefaultCategories $oPlentySoapRequest_SetItemsDefaultCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsDefaultCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsDefaultCategories.class.php");
 		return parent::__soapCall("SetItemsDefaultCategories",array($oPlentySoapRequest_SetItemsDefaultCategories));
 	}
 	
@@ -782,7 +782,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateCategoriesBranches(PlentySoapRequest_UpdateCategoriesBranches $oPlentySoapRequest_UpdateCategoriesBranches)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateCategoriesBranches.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateCategoriesBranches.class.php");
 		return parent::__soapCall("UpdateCategoriesBranches",array($oPlentySoapRequest_UpdateCategoriesBranches));
 	}
 	
@@ -797,7 +797,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCategoryPreview()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCategoryPreview.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCategoryPreview.class.php");
 		return parent::__soapCall("GetCategoryPreview",array());
 	}
 	
@@ -812,7 +812,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteCategories(PlentySoapRequest_DeleteCategories $oPlentySoapRequest_DeleteCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteCategories.class.php");
 		return parent::__soapCall("DeleteCategories",array($oPlentySoapRequest_DeleteCategories));
 	}
 	
@@ -827,7 +827,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetCategories(PlentySoapRequest_SetCategories $oPlentySoapRequest_SetCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetCategories.class.php");
 		return parent::__soapCall("SetCategories",array($oPlentySoapRequest_SetCategories));
 	}
 	
@@ -842,7 +842,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCategories(PlentySoapRequest_GetCategories $oPlentySoapRequest_GetCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCategories.class.php");
 		return parent::__soapCall("GetCategories",array($oPlentySoapRequest_GetCategories));
 	}
 	
@@ -857,7 +857,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCategoryBranchID(PlentySoapRequest_GetCategoryBranchID $oPlentySoapRequest_GetCategoryBranchID)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCategoryBranchID.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCategoryBranchID.class.php");
 		return parent::__soapCall("GetCategoryBranchID",array($oPlentySoapRequest_GetCategoryBranchID));
 	}
 	
@@ -872,7 +872,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsSuppliers(PlentySoapRequest_SetItemsSuppliers $oPlentySoapRequest_SetItemsSuppliers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsSuppliers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsSuppliers.class.php");
 		return parent::__soapCall("SetItemsSuppliers",array($oPlentySoapRequest_SetItemsSuppliers));
 	}
 	
@@ -887,7 +887,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMeasureUnitConfig(PlentySoapRequest_GetMeasureUnitConfig $oPlentySoapRequest_GetMeasureUnitConfig)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMeasureUnitConfig.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMeasureUnitConfig.class.php");
 		return parent::__soapCall("GetMeasureUnitConfig",array($oPlentySoapRequest_GetMeasureUnitConfig));
 	}
 	
@@ -902,7 +902,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteItemsSuppliers(PlentySoapRequest_DeleteItemsSuppliers $oPlentySoapRequest_DeleteItemsSuppliers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteItemsSuppliers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteItemsSuppliers.class.php");
 		return parent::__soapCall("DeleteItemsSuppliers",array($oPlentySoapRequest_DeleteItemsSuppliers));
 	}
 	
@@ -917,7 +917,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsSuppliers(PlentySoapRequest_GetItemsSuppliers $oPlentySoapRequest_GetItemsSuppliers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsSuppliers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsSuppliers.class.php");
 		return parent::__soapCall("GetItemsSuppliers",array($oPlentySoapRequest_GetItemsSuppliers));
 	}
 	
@@ -932,7 +932,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteLinkedItems(PlentySoapRequest_DeleteLinkedItems $oPlentySoapRequest_DeleteLinkedItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteLinkedItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteLinkedItems.class.php");
 		return parent::__soapCall("DeleteLinkedItems",array($oPlentySoapRequest_DeleteLinkedItems));
 	}
 	
@@ -947,7 +947,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetLinkedItems(PlentySoapRequest_SetLinkedItems $oPlentySoapRequest_SetLinkedItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetLinkedItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetLinkedItems.class.php");
 		return parent::__soapCall("SetLinkedItems",array($oPlentySoapRequest_SetLinkedItems));
 	}
 	
@@ -962,7 +962,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddItemMediaFile(PlentySoapRequest_AddItemMediaFile $oPlentySoapRequest_AddItemMediaFile)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddItemMediaFile.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddItemMediaFile.class.php");
 		return parent::__soapCall("AddItemMediaFile",array($oPlentySoapRequest_AddItemMediaFile));
 	}
 	
@@ -977,7 +977,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteItemMediaFiles(PlentySoapRequest_DeleteItemMediaFiles $oPlentySoapRequest_DeleteItemMediaFiles)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteItemMediaFiles.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteItemMediaFiles.class.php");
 		return parent::__soapCall("DeleteItemMediaFiles",array($oPlentySoapRequest_DeleteItemMediaFiles));
 	}
 	
@@ -992,7 +992,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsBase(PlentySoapRequest_GetItemsBase $oPlentySoapRequest_GetItemsBase)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsBase.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsBase.class.php");
 		return parent::__soapCall("GetItemsBase",array($oPlentySoapRequest_GetItemsBase));
 	}
 	
@@ -1007,7 +1007,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsUpdated(PlentySoapRequest_GetItemsUpdated $oPlentySoapRequest_GetItemsUpdated)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsUpdated.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsUpdated.class.php");
 		return parent::__soapCall("GetItemsUpdated",array($oPlentySoapRequest_GetItemsUpdated));
 	}
 	
@@ -1022,7 +1022,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsByStoreID(PlentySoapRequest_GetItemsByStoreID $oPlentySoapRequest_GetItemsByStoreID)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsByStoreID.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsByStoreID.class.php");
 		return parent::__soapCall("GetItemsByStoreID",array($oPlentySoapRequest_GetItemsByStoreID));
 	}
 	
@@ -1037,7 +1037,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsBase(PlentySoapRequest_SetItemsBase $oPlentySoapRequest_SetItemsBase)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsBase.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsBase.class.php");
 		return parent::__soapCall("SetItemsBase",array($oPlentySoapRequest_SetItemsBase));
 	}
 	
@@ -1052,7 +1052,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsPurchasePrice(PlentySoapRequest_SetItemsPurchasePrice $oPlentySoapRequest_SetItemsPurchasePrice)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsPurchasePrice.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsPurchasePrice.class.php");
 		return parent::__soapCall("SetItemsPurchasePrice",array($oPlentySoapRequest_SetItemsPurchasePrice));
 	}
 	
@@ -1067,7 +1067,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteItemsImages(PlentySoapRequest_DeleteItemsImages $oPlentySoapRequest_DeleteItemsImages)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteItemsImages.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteItemsImages.class.php");
 		return parent::__soapCall("DeleteItemsImages",array($oPlentySoapRequest_DeleteItemsImages));
 	}
 	
@@ -1082,7 +1082,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemCategoryCatalog(PlentySoapRequest_GetItemCategoryCatalog $oPlentySoapRequest_GetItemCategoryCatalog)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemCategoryCatalog.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemCategoryCatalog.class.php");
 		return parent::__soapCall("GetItemCategoryCatalog",array($oPlentySoapRequest_GetItemCategoryCatalog));
 	}
 	
@@ -1097,7 +1097,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemCategory(PlentySoapRequest_SetItemCategory $oPlentySoapRequest_SetItemCategory)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemCategory.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemCategory.class.php");
 		return parent::__soapCall("SetItemCategory",array($oPlentySoapRequest_SetItemCategory));
 	}
 	
@@ -1112,7 +1112,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemImages(PlentySoapRequest_SetItemImages $oPlentySoapRequest_SetItemImages)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemImages.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemImages.class.php");
 		return parent::__soapCall("SetItemImages",array($oPlentySoapRequest_SetItemImages));
 	}
 	
@@ -1127,7 +1127,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsImages(PlentySoapRequest_GetItemsImages $oPlentySoapRequest_GetItemsImages)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsImages.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsImages.class.php");
 		return parent::__soapCall("GetItemsImages",array($oPlentySoapRequest_GetItemsImages));
 	}
 	
@@ -1142,7 +1142,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsVariantImages(PlentySoapRequest_GetItemsVariantImages $oPlentySoapRequest_GetItemsVariantImages)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsVariantImages.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsVariantImages.class.php");
 		return parent::__soapCall("GetItemsVariantImages",array($oPlentySoapRequest_GetItemsVariantImages));
 	}
 	
@@ -1157,7 +1157,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsVariantsAvailable(PlentySoapRequest_GetItemsVariantsAvailable $oPlentySoapRequest_GetItemsVariantsAvailable)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsVariantsAvailable.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsVariantsAvailable.class.php");
 		return parent::__soapCall("GetItemsVariantsAvailable",array($oPlentySoapRequest_GetItemsVariantsAvailable));
 	}
 	
@@ -1172,7 +1172,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetProducers(PlentySoapRequest_GetProducers $oPlentySoapRequest_GetProducers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetProducers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetProducers.class.php");
 		return parent::__soapCall("GetProducers",array($oPlentySoapRequest_GetProducers));
 	}
 	
@@ -1187,7 +1187,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsReturnStatus()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsReturnStatus.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsReturnStatus.class.php");
 		return parent::__soapCall("GetItemsReturnStatus",array());
 	}
 	
@@ -1202,7 +1202,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteItems(PlentySoapRequest_DeleteItems $oPlentySoapRequest_DeleteItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteItems.class.php");
 		return parent::__soapCall("DeleteItems",array($oPlentySoapRequest_DeleteItems));
 	}
 	
@@ -1217,7 +1217,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetLinkedItems(PlentySoapRequest_GetLinkedItems $oPlentySoapRequest_GetLinkedItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetLinkedItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetLinkedItems.class.php");
 		return parent::__soapCall("GetLinkedItems",array($oPlentySoapRequest_GetLinkedItems));
 	}
 	
@@ -1232,7 +1232,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsPropertiesList(PlentySoapRequest_GetItemsPropertiesList $oPlentySoapRequest_GetItemsPropertiesList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsPropertiesList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsPropertiesList.class.php");
 		return parent::__soapCall("GetItemsPropertiesList",array($oPlentySoapRequest_GetItemsPropertiesList));
 	}
 	
@@ -1247,7 +1247,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsPriceLists(PlentySoapRequest_GetItemsPriceLists $oPlentySoapRequest_GetItemsPriceLists)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsPriceLists.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsPriceLists.class.php");
 		return parent::__soapCall("GetItemsPriceLists",array($oPlentySoapRequest_GetItemsPriceLists));
 	}
 	
@@ -1262,7 +1262,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsPriceUpdate(PlentySoapRequest_GetItemsPriceUpdate $oPlentySoapRequest_GetItemsPriceUpdate)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsPriceUpdate.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsPriceUpdate.class.php");
 		return parent::__soapCall("GetItemsPriceUpdate",array($oPlentySoapRequest_GetItemsPriceUpdate));
 	}
 	
@@ -1277,7 +1277,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetAttributeValueSets(PlentySoapRequest_GetAttributeValueSets $oPlentySoapRequest_GetAttributeValueSets)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetAttributeValueSets.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetAttributeValueSets.class.php");
 		return parent::__soapCall("GetAttributeValueSets",array($oPlentySoapRequest_GetAttributeValueSets));
 	}
 	
@@ -1292,7 +1292,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetProducers(PlentySoapRequest_SetProducers $oPlentySoapRequest_SetProducers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetProducers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetProducers.class.php");
 		return parent::__soapCall("SetProducers",array($oPlentySoapRequest_SetProducers));
 	}
 	
@@ -1307,7 +1307,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemAttributes(PlentySoapRequest_SetItemAttributes $oPlentySoapRequest_SetItemAttributes)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributes.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributes.class.php");
 		return parent::__soapCall("SetItemAttributes",array($oPlentySoapRequest_SetItemAttributes));
 	}
 	
@@ -1322,7 +1322,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemAttributeLinks(PlentySoapRequest_SetItemAttributeLinks $oPlentySoapRequest_SetItemAttributeLinks)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributeLinks.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributeLinks.class.php");
 		return parent::__soapCall("SetItemAttributeLinks",array($oPlentySoapRequest_SetItemAttributeLinks));
 	}
 	
@@ -1337,7 +1337,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemAttributeVariants(PlentySoapRequest_SetItemAttributeVariants $oPlentySoapRequest_SetItemAttributeVariants)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributeVariants.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemAttributeVariants.class.php");
 		return parent::__soapCall("SetItemAttributeVariants",array($oPlentySoapRequest_SetItemAttributeVariants));
 	}
 	
@@ -1352,7 +1352,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetPriceSets(PlentySoapRequest_SetPriceSets $oPlentySoapRequest_SetPriceSets)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetPriceSets.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetPriceSets.class.php");
 		return parent::__soapCall("SetPriceSets",array($oPlentySoapRequest_SetPriceSets));
 	}
 	
@@ -1367,7 +1367,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsAvailability(PlentySoapRequest_SetItemsAvailability $oPlentySoapRequest_SetItemsAvailability)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsAvailability.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsAvailability.class.php");
 		return parent::__soapCall("SetItemsAvailability",array($oPlentySoapRequest_SetItemsAvailability));
 	}
 	
@@ -1382,7 +1382,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCategoryMappingForMarket(PlentySoapRequest_GetCategoryMappingForMarket $oPlentySoapRequest_GetCategoryMappingForMarket)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCategoryMappingForMarket.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCategoryMappingForMarket.class.php");
 		return parent::__soapCall("GetCategoryMappingForMarket",array($oPlentySoapRequest_GetCategoryMappingForMarket));
 	}
 	
@@ -1397,7 +1397,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetPropertyGroups(PlentySoapRequest_GetPropertyGroups $oPlentySoapRequest_GetPropertyGroups)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetPropertyGroups.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetPropertyGroups.class.php");
 		return parent::__soapCall("GetPropertyGroups",array($oPlentySoapRequest_GetPropertyGroups));
 	}
 	
@@ -1412,7 +1412,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetProperties(PlentySoapRequest_GetProperties $oPlentySoapRequest_GetProperties)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetProperties.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetProperties.class.php");
 		return parent::__soapCall("GetProperties",array($oPlentySoapRequest_GetProperties));
 	}
 	
@@ -1427,7 +1427,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetPropertiesList(PlentySoapRequest_GetPropertiesList $oPlentySoapRequest_GetPropertiesList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetPropertiesList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetPropertiesList.class.php");
 		return parent::__soapCall("GetPropertiesList",array($oPlentySoapRequest_GetPropertiesList));
 	}
 	
@@ -1442,7 +1442,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemBundles(PlentySoapRequest_GetItemBundles $oPlentySoapRequest_GetItemBundles)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemBundles.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemBundles.class.php");
 		return parent::__soapCall("GetItemBundles",array($oPlentySoapRequest_GetItemBundles));
 	}
 	
@@ -1457,7 +1457,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsToBundle(PlentySoapRequest_SetItemsToBundle $oPlentySoapRequest_SetItemsToBundle)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsToBundle.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsToBundle.class.php");
 		return parent::__soapCall("SetItemsToBundle",array($oPlentySoapRequest_SetItemsToBundle));
 	}
 	
@@ -1472,7 +1472,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function RemoveItemsFromBundle(PlentySoapRequest_RemoveItemsFromBundle $oPlentySoapRequest_RemoveItemsFromBundle)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_RemoveItemsFromBundle.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_RemoveItemsFromBundle.class.php");
 		return parent::__soapCall("RemoveItemsFromBundle",array($oPlentySoapRequest_RemoveItemsFromBundle));
 	}
 	
@@ -1487,7 +1487,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetLinkPriceColumnToReferrer()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetLinkPriceColumnToReferrer.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetLinkPriceColumnToReferrer.class.php");
 		return parent::__soapCall("GetLinkPriceColumnToReferrer",array());
 	}
 	
@@ -1502,7 +1502,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemCategoryTree(PlentySoapRequest_GetItemCategoryTree $oPlentySoapRequest_GetItemCategoryTree)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemCategoryTree.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemCategoryTree.class.php");
 		return parent::__soapCall("GetItemCategoryTree",array($oPlentySoapRequest_GetItemCategoryTree));
 	}
 	
@@ -1517,7 +1517,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetAttributeValueSetsDetails(PlentySoapRequest_SetAttributeValueSetsDetails $oPlentySoapRequest_SetAttributeValueSetsDetails)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetAttributeValueSetsDetails.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetAttributeValueSetsDetails.class.php");
 		return parent::__soapCall("SetAttributeValueSetsDetails",array($oPlentySoapRequest_SetAttributeValueSetsDetails));
 	}
 	
@@ -1532,7 +1532,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemAvailabilityConfig()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemAvailabilityConfig.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemAvailabilityConfig.class.php");
 		return parent::__soapCall("GetItemAvailabilityConfig",array());
 	}
 	
@@ -1547,7 +1547,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetProperties(PlentySoapRequest_SetProperties $oPlentySoapRequest_SetProperties)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetProperties.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetProperties.class.php");
 		return parent::__soapCall("SetProperties",array($oPlentySoapRequest_SetProperties));
 	}
 	
@@ -1562,7 +1562,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteProperty(PlentySoapRequest_DeleteProperty $oPlentySoapRequest_DeleteProperty)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteProperty.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteProperty.class.php");
 		return parent::__soapCall("DeleteProperty",array($oPlentySoapRequest_DeleteProperty));
 	}
 	
@@ -1577,7 +1577,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetPropertyGroups(PlentySoapRequest_SetPropertyGroups $oPlentySoapRequest_SetPropertyGroups)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetPropertyGroups.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetPropertyGroups.class.php");
 		return parent::__soapCall("SetPropertyGroups",array($oPlentySoapRequest_SetPropertyGroups));
 	}
 	
@@ -1592,7 +1592,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeletePropertyGroup(PlentySoapRequest_DeletePropertyGroup $oPlentySoapRequest_DeletePropertyGroup)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeletePropertyGroup.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeletePropertyGroup.class.php");
 		return parent::__soapCall("DeletePropertyGroup",array($oPlentySoapRequest_DeletePropertyGroup));
 	}
 	
@@ -1607,7 +1607,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetPropertiesToItem(PlentySoapRequest_SetPropertiesToItem $oPlentySoapRequest_SetPropertiesToItem)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetPropertiesToItem.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetPropertiesToItem.class.php");
 		return parent::__soapCall("SetPropertiesToItem",array($oPlentySoapRequest_SetPropertiesToItem));
 	}
 	
@@ -1622,7 +1622,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function RemovePropertyFromItem(PlentySoapRequest_RemovePropertyFromItem $oPlentySoapRequest_RemovePropertyFromItem)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_RemovePropertyFromItem.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_RemovePropertyFromItem.class.php");
 		return parent::__soapCall("RemovePropertyFromItem",array($oPlentySoapRequest_RemovePropertyFromItem));
 	}
 	
@@ -1637,7 +1637,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDefaultAttributeTypeForMarket()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDefaultAttributeTypeForMarket.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDefaultAttributeTypeForMarket.class.php");
 		return parent::__soapCall("GetDefaultAttributeTypeForMarket",array());
 	}
 	
@@ -1652,7 +1652,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeletePriceSets(PlentySoapRequest_DeletePriceSets $PlentySoapRequest_DeletePriceSets)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeletePriceSets.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeletePriceSets.class.php");
 		return parent::__soapCall("DeletePriceSets",array($PlentySoapRequest_DeletePriceSets));
 	}
 	
@@ -1667,7 +1667,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketItemNumbers(PlentySoapRequest_GetMarketItemNumbers $PlentySoapRequest_GetMarketItemNumbers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketItemNumbers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketItemNumbers.class.php");
 		return parent::__soapCall("GetMarketItemNumbers",array($PlentySoapRequest_GetMarketItemNumbers));
 	}
 	
@@ -1682,7 +1682,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetMarketItemNumbers(PlentySoapRequest_SetMarketItemNumbers $PlentySoapRequest_SetMarketItemNumbers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetMarketItemNumbers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetMarketItemNumbers.class.php");
 		return parent::__soapCall("SetMarketItemNumbers",array($PlentySoapRequest_SetMarketItemNumbers));
 	}
 	
@@ -1697,7 +1697,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemAttributes(PlentySoapRequest_GetItemAttributes $PlentySoapRequest_GetItemAttributes)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemAttributes.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemAttributes.class.php");
 		return parent::__soapCall("GetItemAttributes",array($PlentySoapRequest_GetItemAttributes));
 	}
 	
@@ -1712,7 +1712,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsTexts(PlentySoapRequest_SetItemsTexts $PlentySoapRequest_SetItemsTexts)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsTexts.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsTexts.class.php");
 		return parent::__soapCall("SetItemsTexts",array($PlentySoapRequest_SetItemsTexts));
 	}
 	
@@ -1727,7 +1727,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsTexts(PlentySoapRequest_GetItemsTexts $PlentySoapRequest_GetItemsTexts)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsTexts.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsTexts.class.php");
 		return parent::__soapCall("GetItemsTexts",array($PlentySoapRequest_GetItemsTexts));
 	}
 	
@@ -1742,7 +1742,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteItemAttribute(PlentySoapRequest_DeleteItemAttribute $PlentySoapRequest_DeleteItemAttribute)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteItemAttribute.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteItemAttribute.class.php");
 		return parent::__soapCall("DeleteItemAttribute",array($PlentySoapRequest_DeleteItemAttribute));
 	}
 	
@@ -1757,7 +1757,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SearchItemsSKU(PlentySoapRequest_SearchItemsSKU $PlentySoapRequest_SearchItemsSKU)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SearchItemsSKU.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SearchItemsSKU.class.php");
 		return parent::__soapCall("SearchItemsSKU",array($PlentySoapRequest_SearchItemsSKU));
 	}
 	
@@ -1772,7 +1772,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsFreeTextFields(PlentySoapRequest_SetItemsFreeTextFields $PlentySoapRequest_SetItemsFreeTextFields)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsFreeTextFields.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsFreeTextFields.class.php");
 		return parent::__soapCall("SetItemsFreeTextFields",array($PlentySoapRequest_SetItemsFreeTextFields));
 	}
 	
@@ -1787,7 +1787,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetStoreCategories(PlentySoapRequest_SetStoreCategories $PlentySoapRequest_SetStoreCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetStoreCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetStoreCategories.class.php");
 		return parent::__soapCall("SetStoreCategories",array($PlentySoapRequest_SetStoreCategories));
 	}
 	
@@ -1802,7 +1802,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetItemsWarehouseSettings(PlentySoapRequest_SetItemsWarehouseSettings $PlentySoapRequest_SetItemsWarehouseSettings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetItemsWarehouseSettings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetItemsWarehouseSettings.class.php");
 		return parent::__soapCall("SetItemsWarehouseSettings",array($PlentySoapRequest_SetItemsWarehouseSettings));
 	}
 	
@@ -1817,7 +1817,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsWarehouseSettings(PlentySoapRequest_GetItemsWarehouseSettings $PlentySoapRequest_GetItemsWarehouseSettings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsWarehouseSettings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsWarehouseSettings.class.php");
 		return parent::__soapCall("GetItemsWarehouseSettings",array($PlentySoapRequest_GetItemsWarehouseSettings));
 	}
 	
@@ -1832,7 +1832,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsPreviewLink(PlentySoapRequest_GetItemsPreviewLink $PlentySoapRequest_GetItemsPreviewLink)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsPreviewLink.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsPreviewLink.class.php");
 		return parent::__soapCall("GetItemsPreviewLink",array($PlentySoapRequest_GetItemsPreviewLink));
 	}
 	
@@ -1847,7 +1847,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsSearchData(PlentySoapRequest_GetItemsSearchData $PlentySoapRequest_GetItemsSearchData)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsSearchData.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsSearchData.class.php");
 		return parent::__soapCall("GetItemsSearchData",array($PlentySoapRequest_GetItemsSearchData));
 	}
 	
@@ -1862,7 +1862,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsDefaultShippingCost(PlentySoapRequest_GetItemsDefaultShippingCost $PlentySoapRequest_GetItemsDefaultShippingCost)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsDefaultShippingCost.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsDefaultShippingCost.class.php");
 		return parent::__soapCall("GetItemsDefaultShippingCost",array($PlentySoapRequest_GetItemsDefaultShippingCost));
 	}
 	
@@ -1877,7 +1877,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddOrderNotes(PlentySoapRequest_AddOrderNotes $oPlentySoapRequest_AddOrderNotes)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddOrderNotes.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddOrderNotes.class.php");
 		return parent::__soapCall("AddOrderNotes",array($oPlentySoapRequest_AddOrderNotes));
 	}
 	
@@ -1892,7 +1892,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetDeliveryOrders(PlentySoapRequest_SetDeliveryOrders $oPlentySoapRequest_SetDeliveryOrders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetDeliveryOrders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetDeliveryOrders.class.php");
 		return parent::__soapCall("SetDeliveryOrders",array($oPlentySoapRequest_SetDeliveryOrders));
 	}
 	
@@ -1907,7 +1907,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDeliveryOrders(PlentySoapRequest_GetDeliveryOrders $oPlentySoapRequest_GetDeliveryOrders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDeliveryOrders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDeliveryOrders.class.php");
 		return parent::__soapCall("GetDeliveryOrders",array($oPlentySoapRequest_GetDeliveryOrders));
 	}
 	
@@ -1922,7 +1922,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddDocument(PlentySoapRequest_AddDocument $oPlentySoapRequest_AddDocument)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddDocument.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddDocument.class.php");
 		return parent::__soapCall("AddDocument",array($oPlentySoapRequest_AddDocument));
 	}
 	
@@ -1937,7 +1937,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrderDocument(PlentySoapRequest_GetOrderDocument $oPlentySoapRequest_GetOrderDocument)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrderDocument.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrderDocument.class.php");
 		return parent::__soapCall("GetOrderDocument",array($oPlentySoapRequest_GetOrderDocument));
 	}
 	
@@ -1952,7 +1952,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetOrderStatus(PlentySoapRequest_SetOrderStatus $PlentySoapRequest_SetOrderStatus)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetOrderStatus.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetOrderStatus.class.php");
 		return parent::__soapCall("SetOrderStatus",array($PlentySoapRequest_SetOrderStatus));
 	}
 	
@@ -1967,7 +1967,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrderStatusList(PlentySoapRequest_GetOrderStatusList $oPlentySoapRequest_GetOrderStatusList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrderStatusList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrderStatusList.class.php");
 		return parent::__soapCall("GetOrderStatusList",array($oPlentySoapRequest_GetOrderStatusList));
 	}
 	
@@ -1982,7 +1982,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddOrders(PlentySoapRequest_AddOrders $oPlentySoapRequest_AddOrders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddOrders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddOrders.class.php");
 		return parent::__soapCall("AddOrders",array($oPlentySoapRequest_AddOrders));
 	}
 	
@@ -1997,7 +1997,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteOrderItems(PlentySoapRequest_DeleteOrderItems $oPlentySoapRequest_DeleteOrderItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteOrderItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteOrderItems.class.php");
 		return parent::__soapCall("DeleteOrderItems",array($oPlentySoapRequest_DeleteOrderItems));
 	}
 	
@@ -2012,7 +2012,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetOrderItems(PlentySoapRequest_SetOrderItems $oPlentySoapRequest_SetOrderItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetOrderItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetOrderItems.class.php");
 		return parent::__soapCall("SetOrderItems",array($oPlentySoapRequest_SetOrderItems));
 	}
 	
@@ -2027,7 +2027,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetOrdersHead(PlentySoapRequest_SetOrdersHead $oPlentySoapRequest_SetOrdersHead)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetOrdersHead.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetOrdersHead.class.php");
 		return parent::__soapCall("SetOrdersHead",array($oPlentySoapRequest_SetOrdersHead));
 	}
 	
@@ -2042,7 +2042,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetBookOutgoingItems(PlentySoapRequest_SetBookOutgoingItems $oPlentySoapRequest_SetBookOutgoingItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetBookOutgoingItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetBookOutgoingItems.class.php");
 		return parent::__soapCall("SetBookOutgoingItems",array($oPlentySoapRequest_SetBookOutgoingItems));
 	}
 	
@@ -2057,7 +2057,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetBackPostOutgoingItems(PlentySoapRequest_SetBackPostOutgoingItems $oPlentySoapRequest_SetBackPostOutgoingItems)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetBackPostOutgoingItems.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetBackPostOutgoingItems.class.php");
 		return parent::__soapCall("SetBackPostOutgoingItems",array($oPlentySoapRequest_SetBackPostOutgoingItems));
 	}
 	
@@ -2072,7 +2072,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddOrdersPackageNumber(PlentySoapRequest_AddOrdersPackageNumber $oAddOrdersPackageNumberRequest)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddOrdersPackageNumber.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddOrdersPackageNumber.class.php");
 		return parent::__soapCall("AddOrdersPackageNumber",array($oAddOrdersPackageNumberRequest));
 	}
 	
@@ -2087,7 +2087,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteOrderPackageNumber(PlentySoapRequest_DeleteOrderPackageNumber $oPlentySoapRequest_DeleteOrderPackageNumber)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteOrderPackageNumber.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteOrderPackageNumber.class.php");
 		return parent::__soapCall("DeleteOrderPackageNumber",array($oPlentySoapRequest_DeleteOrderPackageNumber));
 	}
 	
@@ -2102,7 +2102,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersPaymentInformation(PlentySoapRequest_GetOrdersPaymentInformation $oPlentySoapRequest_GetOrdersPaymentInformation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersPaymentInformation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersPaymentInformation.class.php");
 		return parent::__soapCall("GetOrdersPaymentInformation",array($oPlentySoapRequest_GetOrdersPaymentInformation));
 	}
 	
@@ -2117,7 +2117,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersShipmentNumbers(PlentySoapRequest_GetOrdersShipmentNumbers $oPlentySoapRequest_GetOrdersShipmentNumbers)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersShipmentNumbers.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersShipmentNumbers.class.php");
 		return parent::__soapCall("GetOrdersShipmentNumbers",array($oPlentySoapRequest_GetOrdersShipmentNumbers));
 	}
 	
@@ -2132,7 +2132,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SearchOrders(PlentySoapRequest_SearchOrders $oPlentySoapRequest_SearchOrders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SearchOrders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SearchOrders.class.php");
 		return parent::__soapCall("SearchOrders",array($oPlentySoapRequest_SearchOrders));
 	}
 	
@@ -2147,7 +2147,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMethodOfPayments(PlentySoapRequest_GetMethodOfPayments $oPlentySoapRequest_GetMethodOfPayments)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMethodOfPayments.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMethodOfPayments.class.php");
 		return parent::__soapCall("GetMethodOfPayments",array($oPlentySoapRequest_GetMethodOfPayments));
 	}
 	
@@ -2162,7 +2162,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddIncomingPayments(PlentySoapRequest_AddIncomingPayments $oPlentySoapRequest_AddIncomingPayments)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddIncomingPayments.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddIncomingPayments.class.php");
 		return parent::__soapCall("AddIncomingPayments",array($oPlentySoapRequest_AddIncomingPayments));
 	}
 	
@@ -2177,7 +2177,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetIncomingPayments(PlentySoapRequest_GetIncomingPayments $oPlentySoapRequest_GetIncomingPayments)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetIncomingPayments.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetIncomingPayments.class.php");
 		return parent::__soapCall("GetIncomingPayments",array($oPlentySoapRequest_GetIncomingPayments));
 	}
 	
@@ -2192,7 +2192,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetShippingServiceProvider()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetShippingServiceProvider.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetShippingServiceProvider.class.php");
 		return parent::__soapCall("GetShippingServiceProvider",array());
 	}
 	
@@ -2207,7 +2207,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetShippingProfiles(PlentySoapRequest_GetShippingProfiles $oPlentySoapRequest_GetShippingProfiles)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetShippingProfiles.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetShippingProfiles.class.php");
 		return parent::__soapCall("GetShippingProfiles",array($oPlentySoapRequest_GetShippingProfiles));
 	}
 	
@@ -2222,7 +2222,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetShippingProfileConfigurations(PlentySoapRequest_GetShippingProfileConfigurations $oPlentySoapRequest_GetShippingProfileConfigurations)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetShippingProfileConfigurations.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetShippingProfileConfigurations.class.php");
 		return parent::__soapCall("GetShippingProfileConfigurations",array($oPlentySoapRequest_GetShippingProfileConfigurations));
 	}
 	
@@ -2237,7 +2237,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddShippingProfile(PlentySoapRequest_AddShippingProfile $oPlentySoapRequest_AddShippingProfile)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddShippingProfile.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddShippingProfile.class.php");
 		return parent::__soapCall("AddShippingProfile",array($oPlentySoapRequest_AddShippingProfile));
 	}
 	
@@ -2252,7 +2252,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetSalesOrderReferrer()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetSalesOrderReferrer.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetSalesOrderReferrer.class.php");
 		return parent::__soapCall("GetSalesOrderReferrer",array());
 	}
 	
@@ -2267,7 +2267,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetEmailTemplate(PlentySoapRequest_GetEmailTemplate $oPlentySoapRequest_GetEmailTemplate)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetEmailTemplate.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetEmailTemplate.class.php");
 		return parent::__soapCall("GetEmailTemplate",array($oPlentySoapRequest_GetEmailTemplate));
 	}
 	
@@ -2282,7 +2282,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteEmailTemplates(PlentySoapRequest_DeleteEmailTemplates $oPlentySoapRequest_DeleteEmailTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteEmailTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteEmailTemplates.class.php");
 		return parent::__soapCall("DeleteEmailTemplates",array($oPlentySoapRequest_DeleteEmailTemplates));
 	}
 	
@@ -2297,7 +2297,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetEmailTemplates(PlentySoapRequest_SetEmailTemplates $oPlentySoapRequest_SetEmailTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetEmailTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetEmailTemplates.class.php");
 		return parent::__soapCall("SetEmailTemplates",array($oPlentySoapRequest_SetEmailTemplates));
 	}
 	
@@ -2312,7 +2312,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetEmailTemplates(PlentySoapRequest_GetEmailTemplates $oPlentySoapRequest_GetEmailTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetEmailTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetEmailTemplates.class.php");
 		return parent::__soapCall("GetEmailTemplates",array($oPlentySoapRequest_GetEmailTemplates));
 	}
 	
@@ -2327,7 +2327,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersInvoiceDocumentURLs(PlentySoapRequest_GetOrdersInvoiceDocumentURLs $oPlentySoapRequest_GetOrdersInvoiceDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersInvoiceDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersInvoiceDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersInvoiceDocumentURLs",array($oPlentySoapRequest_GetOrdersInvoiceDocumentURLs));
 	}
 	
@@ -2342,7 +2342,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersCreditNoteDocumentURLs(PlentySoapRequest_GetOrdersCreditNoteDocumentURLs $oPlentySoapRequest_GetOrdersCreditNoteDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersCreditNoteDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersCreditNoteDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersCreditNoteDocumentURLs",array($oPlentySoapRequest_GetOrdersCreditNoteDocumentURLs));
 	}
 	
@@ -2357,7 +2357,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersDeliveryNoteDocumentURLs(PlentySoapRequest_GetOrdersDeliveryNoteDocumentURLs $oPlentySoapRequest_GetOrdersDeliveryNoteDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersDeliveryNoteDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersDeliveryNoteDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersDeliveryNoteDocumentURLs",array($oPlentySoapRequest_GetOrdersDeliveryNoteDocumentURLs));
 	}
 	
@@ -2372,7 +2372,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersDunningLetterDocumentURLs(PlentySoapRequest_GetOrdersDunningLetterDocumentURLs $oPlentySoapRequest_GetOrdersDunningLetterDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersDunningLetterDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersDunningLetterDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersDunningLetterDocumentURLs",array($oPlentySoapRequest_GetOrdersDunningLetterDocumentURLs));
 	}
 	
@@ -2387,7 +2387,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersOfferDocumentURLs(PlentySoapRequest_GetOrdersOfferDocumentURLs $oPlentySoapRequest_GetOrdersOfferDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersOfferDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersOfferDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersOfferDocumentURLs",array($oPlentySoapRequest_GetOrdersOfferDocumentURLs));
 	}
 	
@@ -2402,7 +2402,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrdersOrderConfirmationDocumentURLs(PlentySoapRequest_GetOrdersOrderConfirmationDocumentURLs $oPlentySoapRequest_GetOrdersOrderConfirmationDocumentURLs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrdersOrderConfirmationDocumentURLs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrdersOrderConfirmationDocumentURLs.class.php");
 		return parent::__soapCall("GetOrdersOrderConfirmationDocumentURLs",array($oPlentySoapRequest_GetOrdersOrderConfirmationDocumentURLs));
 	}
 	
@@ -2417,7 +2417,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetReturns(PlentySoapRequest_GetReturns $oPlentySoapRequest_GetReturns)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetReturns.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetReturns.class.php");
 		return parent::__soapCall("GetReturns",array($oPlentySoapRequest_GetReturns));
 	}
 	
@@ -2432,7 +2432,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetReturns(PlentySoapRequest_SetReturns $oPlentySoapRequest_SetReturns)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetReturns.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetReturns.class.php");
 		return parent::__soapCall("SetReturns",array($oPlentySoapRequest_SetReturns));
 	}
 	
@@ -2447,7 +2447,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetRepairs(PlentySoapRequest_SetRepairs $oPlentySoapRequest_SetRepairs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetRepairs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetRepairs.class.php");
 		return parent::__soapCall("SetRepairs",array($oPlentySoapRequest_SetRepairs));
 	}
 	
@@ -2462,7 +2462,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetCreditNotes(PlentySoapRequest_SetCreditNotes $oPlentySoapRequest_SetCreditNotes)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetCreditNotes.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetCreditNotes.class.php");
 		return parent::__soapCall("SetCreditNotes",array($oPlentySoapRequest_SetCreditNotes));
 	}
 	
@@ -2477,7 +2477,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetWarranties(PlentySoapRequest_SetWarranties $oPlentySoapRequest_SetWarranties)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetWarranties.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetWarranties.class.php");
 		return parent::__soapCall("SetWarranties",array($oPlentySoapRequest_SetWarranties));
 	}
 	
@@ -2492,7 +2492,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetReasonsForReturn()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetReasonsForReturn.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetReasonsForReturn.class.php");
 		return parent::__soapCall("GetReasonsForReturn",array());
 	}
 	
@@ -2507,7 +2507,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetReorders(PlentySoapRequest_SetReorders $oPlentySoapRequest_SetReorders)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetReorders.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetReorders.class.php");
 		return parent::__soapCall("SetReorders",array($oPlentySoapRequest_SetReorders));
 	}
 	
@@ -2522,7 +2522,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetReorder(PlentySoapRequest_GetReorder $oPlentySoapRequest_GetReorder)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetReorder.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetReorder.class.php");
 		return parent::__soapCall("GetReorder",array($oPlentySoapRequest_GetReorder));
 	}
 	
@@ -2537,7 +2537,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteReorder(PlentySoapRequest_DeleteReorder $oPlentySoapRequest_DeleteReorder)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteReorder.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteReorder.class.php");
 		return parent::__soapCall("DeleteReorder",array($oPlentySoapRequest_DeleteReorder));
 	}
 	
@@ -2552,7 +2552,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketplaceTransactions(PlentySoapRequest_GetMarketplaceTransactions $oPlentySoapRequest_GetMarketplaceTransactions)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketplaceTransactions.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketplaceTransactions.class.php");
 		return parent::__soapCall("GetMarketplaceTransactions",array($oPlentySoapRequest_GetMarketplaceTransactions));
 	}
 	
@@ -2567,7 +2567,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrderStatusHistory(PlentySoapRequest_GetOrderStatusHistory $oPlentySoapRequest_GetOrderStatusHistory)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrderStatusHistory.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrderStatusHistory.class.php");
 		return parent::__soapCall("GetOrderStatusHistory",array($oPlentySoapRequest_GetOrderStatusHistory));
 	}
 	
@@ -2582,7 +2582,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddOrderStatusHistory(PlentySoapRequest_AddOrderStatusHistory $oPlentySoapRequest_AddOrderStatusHistory)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddOrderStatusHistory.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddOrderStatusHistory.class.php");
 		return parent::__soapCall("AddOrderStatusHistory",array($oPlentySoapRequest_AddOrderStatusHistory));
 	}
 	
@@ -2597,7 +2597,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddDeliveryOrder(PlentySoapRequest_AddDeliveryOrder $oPlentySoapRequest_AddDeliveryOrder)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddDeliveryOrder.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddDeliveryOrder.class.php");
 		return parent::__soapCall("AddDeliveryOrder",array($oPlentySoapRequest_AddDeliveryOrder));
 	}
 	
@@ -2612,7 +2612,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCustomerOrderOverviewLink(PlentySoapRequest_GetCustomerOrderOverviewLink $oPlentySoapRequest_GetCustomerOrderOverviewLink)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCustomerOrderOverviewLink.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCustomerOrderOverviewLink.class.php");
 		return parent::__soapCall("GetCustomerOrderOverviewLink",array($oPlentySoapRequest_GetCustomerOrderOverviewLink));
 	}
 	
@@ -2627,7 +2627,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetShipmentRegistration(PlentySoapRequest_SetShipmentRegistration $oPlentySoapRequest_SetShipmentRegistration)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetShipmentRegistration.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetShipmentRegistration.class.php");
 		return parent::__soapCall("SetShipmentRegistration",array($oPlentySoapRequest_SetShipmentRegistration));
 	}
 	
@@ -2642,7 +2642,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetOrderCheckout(PlentySoapRequest_GetOrderCheckout $oPlentySoapRequest_GetOrderCheckout)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetOrderCheckout.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetOrderCheckout.class.php");
 		return parent::__soapCall("GetOrderCheckout",array($oPlentySoapRequest_GetOrderCheckout));
 	}
 	
@@ -2657,7 +2657,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetDeliveryCharges(PlentySoapRequest_GetDeliveryCharges $oPlentySoapRequest_GetDeliveryCharges)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetDeliveryCharges.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetDeliveryCharges.class.php");
 		return parent::__soapCall("GetDeliveryCharges",array($oPlentySoapRequest_GetDeliveryCharges));
 	}
 	
@@ -2672,7 +2672,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetPartsCompatibilityListings(PlentySoapRequest_GetPartsCompatibilityListings $oPlentySoapRequest_GetPartsCompatibilityListings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetPartsCompatibilityListings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetPartsCompatibilityListings.class.php");
 		return parent::__soapCall("GetPartsCompatibilityListings",array($oPlentySoapRequest_GetPartsCompatibilityListings));
 	}
 	
@@ -2687,7 +2687,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetPartsCompatibilityListings(PlentySoapRequest_SetPartsCompatibilityListings $oPlentySoapRequest_SetPartsCompatibilityListings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetPartsCompatibilityListings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetPartsCompatibilityListings.class.php");
 		return parent::__soapCall("SetPartsCompatibilityListings",array($oPlentySoapRequest_SetPartsCompatibilityListings));
 	}
 	
@@ -2702,7 +2702,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetListings(PlentySoapRequest_GetListings $oPlentySoapRequest_GetListings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetListings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetListings.class.php");
 		return parent::__soapCall("GetListings",array($oPlentySoapRequest_GetListings));
 	}
 	
@@ -2717,7 +2717,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateListingsStop(PlentySoapRequest_UpdateListingsStop $oPlentySoapRequest_UpdateListingsStop)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsStop.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsStop.class.php");
 		return parent::__soapCall("UpdateListingsStop",array($oPlentySoapRequest_UpdateListingsStop));
 	}
 	
@@ -2732,7 +2732,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateListingsStart(PlentySoapRequest_UpdateListingsStart $oPlentySoapRequest_UpdateListingsStart)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsStart.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsStart.class.php");
 		return parent::__soapCall("UpdateListingsStart",array($oPlentySoapRequest_UpdateListingsStart));
 	}
 	
@@ -2747,7 +2747,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateListingsUpdate(PlentySoapRequest_UpdateListingsUpdate $oPlentySoapRequest_UpdateListingsUpdate)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsUpdate.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsUpdate.class.php");
 		return parent::__soapCall("UpdateListingsUpdate",array($oPlentySoapRequest_UpdateListingsUpdate));
 	}
 	
@@ -2762,7 +2762,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateListingsVerify(PlentySoapRequest_UpdateListingsVerify $oPlentySoapRequest_UpdateListingsVerify)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsVerify.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsVerify.class.php");
 		return parent::__soapCall("UpdateListingsVerify",array($oPlentySoapRequest_UpdateListingsVerify));
 	}
 	
@@ -2777,7 +2777,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function UpdateListingsRelist(PlentySoapRequest_UpdateListingsRelist $oPlentySoapRequest_UpdateListingsRelist)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsRelist.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_UpdateListingsRelist.class.php");
 		return parent::__soapCall("UpdateListingsRelist",array($oPlentySoapRequest_UpdateListingsRelist));
 	}
 	
@@ -2792,7 +2792,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketStoreCategories(PlentySoapRequest_GetMarketStoreCategories $oPlentySoapRequest_GetMarketStoreCategories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketStoreCategories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketStoreCategories.class.php");
 		return parent::__soapCall("GetMarketStoreCategories",array($oPlentySoapRequest_GetMarketStoreCategories));
 	}
 	
@@ -2807,7 +2807,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketShippingProfiles(PlentySoapRequest_GetMarketShippingProfiles $oPlentySoapRequest_GetMarketShippingProfiles)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketShippingProfiles.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketShippingProfiles.class.php");
 		return parent::__soapCall("GetMarketShippingProfiles",array($oPlentySoapRequest_GetMarketShippingProfiles));
 	}
 	
@@ -2822,7 +2822,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketLogs(PlentySoapRequest_GetMarketLogs $oPlentySoapRequest_GetMarketLogs)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketLogs.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketLogs.class.php");
 		return parent::__soapCall("GetMarketLogs",array($oPlentySoapRequest_GetMarketLogs));
 	}
 	
@@ -2837,7 +2837,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketDirectories(PlentySoapRequest_GetMarketDirectories $oPlentySoapRequest_GetMarketDirectories)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketDirectories.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketDirectories.class.php");
 		return parent::__soapCall("GetMarketDirectories",array($oPlentySoapRequest_GetMarketDirectories));
 	}
 	
@@ -2852,7 +2852,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketAccounts(PlentySoapRequest_GetMarketAccounts $oPlentySoapRequest_GetMarketAccounts)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketAccounts.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketAccounts.class.php");
 		return parent::__soapCall("GetMarketAccounts",array($oPlentySoapRequest_GetMarketAccounts));
 	}
 	
@@ -2867,7 +2867,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteListingsTemplates(PlentySoapRequest_DeleteListingsTemplates $oPlentySoapRequest_DeleteListingsTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsTemplates.class.php");
 		return parent::__soapCall("DeleteListingsTemplates",array($oPlentySoapRequest_DeleteListingsTemplates));
 	}
 	
@@ -2882,7 +2882,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetListingsTemplates(PlentySoapRequest_GetListingsTemplates $oPlentySoapRequest_GetListingsTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetListingsTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetListingsTemplates.class.php");
 		return parent::__soapCall("GetListingsTemplates",array($oPlentySoapRequest_GetListingsTemplates));
 	}
 	
@@ -2897,7 +2897,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetListingsTemplates(PlentySoapRequest_SetListingsTemplates $oPlentySoapRequest_SetListingsTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetListingsTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetListingsTemplates.class.php");
 		return parent::__soapCall("SetListingsTemplates",array($oPlentySoapRequest_SetListingsTemplates));
 	}
 	
@@ -2912,7 +2912,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetListingsProperties(PlentySoapRequest_GetListingsProperties $oPlentySoapRequest_GetListingsProperties)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetListingsProperties.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetListingsProperties.class.php");
 		return parent::__soapCall("GetListingsProperties",array($oPlentySoapRequest_GetListingsProperties));
 	}
 	
@@ -2927,7 +2927,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetListingsLayoutTemplates(PlentySoapRequest_GetListingsLayoutTemplates $oPlentySoapRequest_GetListingsLayoutTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetListingsLayoutTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetListingsLayoutTemplates.class.php");
 		return parent::__soapCall("GetListingsLayoutTemplates",array($oPlentySoapRequest_GetListingsLayoutTemplates));
 	}
 	
@@ -2942,7 +2942,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteListingsProperties(PlentySoapRequest_DeleteListingsProperties $oPlentySoapRequest_DeleteListingsProperties)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsProperties.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsProperties.class.php");
 		return parent::__soapCall("DeleteListingsProperties",array($oPlentySoapRequest_DeleteListingsProperties));
 	}
 	
@@ -2957,7 +2957,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function DeleteListingsLayoutTemplates(PlentySoapRequest_DeleteListingsLayoutTemplates $oPlentySoapRequest_DeleteListingsLayoutTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsLayoutTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_DeleteListingsLayoutTemplates.class.php");
 		return parent::__soapCall("DeleteListingsLayoutTemplates",array($oPlentySoapRequest_DeleteListingsLayoutTemplates));
 	}
 	
@@ -2972,7 +2972,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetListingsLayoutTemplates(PlentySoapRequest_SetListingsLayoutTemplates $oPlentySoapRequest_SetListingsLayoutTemplates)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetListingsLayoutTemplates.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetListingsLayoutTemplates.class.php");
 		return parent::__soapCall("SetListingsLayoutTemplates",array($oPlentySoapRequest_SetListingsLayoutTemplates));
 	}
 	
@@ -2987,7 +2987,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetListings(PlentySoapRequest_SetListings $oPlentySoapRequest_SetListings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetListings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetListings.class.php");
 		return parent::__soapCall("SetListings",array($oPlentySoapRequest_SetListings));
 	}
 	
@@ -3002,7 +3002,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetMarketListings(PlentySoapRequest_SetMarketListings $oPlentySoapRequest_SetMarketListings)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetMarketListings.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetMarketListings.class.php");
 		return parent::__soapCall("SetMarketListings",array($oPlentySoapRequest_SetMarketListings));
 	}
 	
@@ -3017,7 +3017,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMarketListingItemVariants(PlentySoapRequest_GetMarketListingItemVariants $oPlentySoapRequest_GetMarketListingItemVariants)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMarketListingItemVariants.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMarketListingItemVariants.class.php");
 		return parent::__soapCall("GetMarketListingItemVariants",array($oPlentySoapRequest_GetMarketListingItemVariants));
 	}
 	
@@ -3032,7 +3032,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCurrentStocks(PlentySoapRequest_GetCurrentStocks $oPlentySoapResponse_GetCurrentStocks)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCurrentStocks.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCurrentStocks.class.php");
 		return parent::__soapCall("GetCurrentStocks",array($oPlentySoapResponse_GetCurrentStocks));
 	}
 	
@@ -3047,7 +3047,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetCurrentStocks(PlentySoapRequest_SetCurrentStocks $oPlentySoapRequest_SetCurrentStocks)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetCurrentStocks.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetCurrentStocks.class.php");
 		return parent::__soapCall("SetCurrentStocks",array($oPlentySoapRequest_SetCurrentStocks));
 	}
 	
@@ -3062,7 +3062,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetIncomingStocks(PlentySoapRequest_SetIncomingStocks $oPlentySoapRequest_SetIncomingStocks)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetIncomingStocks.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetIncomingStocks.class.php");
 		return parent::__soapCall("SetIncomingStocks",array($oPlentySoapRequest_SetIncomingStocks));
 	}
 	
@@ -3077,7 +3077,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetStocksTransfer(PlentySoapRequest_SetStocksTransfer $oPlentySoapRequest_SetStocksTransfer)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetStocksTransfer.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetStocksTransfer.class.php");
 		return parent::__soapCall("SetStocksTransfer",array($oPlentySoapRequest_SetStocksTransfer));
 	}
 	
@@ -3092,7 +3092,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetWarehouseList(PlentySoapRequest_GetWarehouseList $oPlentySoapRequest_GetWarehouseList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseList.class.php");
 		return parent::__soapCall("GetWarehouseList",array($oPlentySoapRequest_GetWarehouseList));
 	}
 	
@@ -3107,7 +3107,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetRacksList(PlentySoapRequest_GetRacksList $oPlentySoapRequest_GetRacksList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetRacksList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetRacksList.class.php");
 		return parent::__soapCall("GetRacksList",array($oPlentySoapRequest_GetRacksList));
 	}
 	
@@ -3122,7 +3122,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetWarehouseItem(PlentySoapRequest_GetWarehouseItem $oPlentySoapRequest_GetWarehouseItem)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseItem.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseItem.class.php");
 		return parent::__soapCall("GetWarehouseItem",array($oPlentySoapRequest_GetWarehouseItem));
 	}
 	
@@ -3137,7 +3137,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCurrentStocks4Marketplace(PlentySoapRequest_GetCurrentStocks4Marketplace $oPlentySoapRequest_GetCurrentStocks4Marketplace)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCurrentStocks4Marketplace.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCurrentStocks4Marketplace.class.php");
 		return parent::__soapCall("GetCurrentStocks4Marketplace",array($oPlentySoapRequest_GetCurrentStocks4Marketplace));
 	}
 	
@@ -3152,7 +3152,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetMultiShops()
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetMultiShops.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetMultiShops.class.php");
 		return parent::__soapCall("GetMultiShops",array());
 	}
 	
@@ -3167,7 +3167,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetWarehouseStorageLocation(PlentySoapRequest_GetWarehouseStorageLocation $oPlentySoapRequest_GetWarehouseStorageLocation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseStorageLocation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetWarehouseStorageLocation.class.php");
 		return parent::__soapCall("GetWarehouseStorageLocation",array($oPlentySoapRequest_GetWarehouseStorageLocation));
 	}
 	
@@ -3182,7 +3182,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsStock(PlentySoapRequest_GetItemsStock $oPlentySoapRequest_GetItemsStock)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsStock.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsStock.class.php");
 		return parent::__soapCall("GetItemsStock",array($oPlentySoapRequest_GetItemsStock));
 	}
 	
@@ -3197,7 +3197,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemsStockSearch(PlentySoapRequest_GetItemsStockSearch $oPlentySoapRequest_GetItemsStockSearch)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemsStockSearch.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemsStockSearch.class.php");
 		return parent::__soapCall("GetItemsStockSearch",array($oPlentySoapRequest_GetItemsStockSearch));
 	}
 	
@@ -3212,7 +3212,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetStockMovements(PlentySoapRequest_GetStockMovements $oPlentySoapRequest_GetStockMovements)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetStockMovements.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetStockMovements.class.php");
 		return parent::__soapCall("GetStockMovements",array($oPlentySoapRequest_GetStockMovements));
 	}
 	
@@ -3227,7 +3227,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetWarehouse(PlentySoapRequest_SetWarehouse $oPlentySoapRequest_SetWarehouse)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetWarehouse.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetWarehouse.class.php");
 		return parent::__soapCall("SetWarehouse",array($oPlentySoapRequest_SetWarehouse));
 	}
 	
@@ -3242,7 +3242,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetContentPage(PlentySoapRequest_GetContentPage $oPlentySoapRequest_GetContentPage)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetContentPage.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetContentPage.class.php");
 		return parent::__soapCall("GetContentPage",array($oPlentySoapRequest_GetContentPage));
 	}
 	
@@ -3257,7 +3257,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetContentPages(PlentySoapRequest_SetContentPages $oPlentySoapRequest_SetContentPages)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetContentPages.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetContentPages.class.php");
 		return parent::__soapCall("SetContentPages",array($oPlentySoapRequest_SetContentPages));
 	}
 	
@@ -3272,7 +3272,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddTicket(PlentySoapRequest_AddTicket $oPlentySoapRequest_AddTicket)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddTicket.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddTicket.class.php");
 		return parent::__soapCall("AddTicket",array($oPlentySoapRequest_AddTicket));
 	}
 	
@@ -3287,7 +3287,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function AddTicketLeafe(PlentySoapRequest_AddTicketLeafe $oPlentySoapRequest_AddTicketLeafe)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_AddTicketLeafe.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_AddTicketLeafe.class.php");
 		return parent::__soapCall("AddTicketLeafe",array($oPlentySoapRequest_AddTicketLeafe));
 	}
 	
@@ -3302,7 +3302,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetTermsAndCancellation(PlentySoapRequest_GetTermsAndCancellation $PlentySoapRequest_GetTermsAndCancellation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetTermsAndCancellation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetTermsAndCancellation.class.php");
 		return parent::__soapCall("GetTermsAndCancellation",array($PlentySoapRequest_GetTermsAndCancellation));
 	}
 	
@@ -3317,7 +3317,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetTermsAndCancellation(PlentySoapRequest_SetTermsAndCancellation $PlentySoapRequest_SetTermsAndCancellation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetTermsAndCancellation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetTermsAndCancellation.class.php");
 		return parent::__soapCall("SetTermsAndCancellation",array($PlentySoapRequest_SetTermsAndCancellation));
 	}
 	
@@ -3332,7 +3332,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetLegalInformation(PlentySoapRequest_GetLegalInformation $PlentySoapRequest_GetLegalInformation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetLegalInformation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetLegalInformation.class.php");
 		return parent::__soapCall("GetLegalInformation",array($PlentySoapRequest_GetLegalInformation));
 	}
 	
@@ -3347,7 +3347,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetLegalInformation(PlentySoapRequest_SetLegalInformation $PlentySoapRequest_SetLegalInformation)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetLegalInformation.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetLegalInformation.class.php");
 		return parent::__soapCall("SetLegalInformation",array($PlentySoapRequest_SetLegalInformation));
 	}
 	
@@ -3362,7 +3362,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetReportingFile(PlentySoapRequest_GetReportingFile $PlentySoapRequest_GetReportingFile)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetReportingFile.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetReportingFile.class.php");
 		return parent::__soapCall("GetReportingFile",array($PlentySoapRequest_GetReportingFile));
 	}
 	
@@ -3377,7 +3377,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetFolderEmails(PlentySoapRequest_GetFolderEmails $PlentySoapRequest_GetFolderEmails)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetFolderEmails.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetFolderEmails.class.php");
 		return parent::__soapCall("GetFolderEmails",array($PlentySoapRequest_GetFolderEmails));
 	}
 	
@@ -3392,7 +3392,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetEmailFolderList(PlentySoapRequest_GetEmailFolderList $PlentySoapRequest_GetEmailFolderList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetEmailFolderList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetEmailFolderList.class.php");
 		return parent::__soapCall("GetEmailFolderList",array($PlentySoapRequest_GetEmailFolderList));
 	}
 	
@@ -3407,7 +3407,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetAutonomousReturns(PlentySoapRequest_SetAutonomousReturns $oPlentySoapRequest_SetAutonomousReturns)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetAutonomousReturns.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetAutonomousReturns.class.php");
 		return parent::__soapCall("SetAutonomousReturns",array($oPlentySoapRequest_SetAutonomousReturns));
 	}
 	
@@ -3422,7 +3422,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCampaignList(PlentySoapRequest_GetCampaignList $PlentySoapRequest_GetCampaignList)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCampaignList.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCampaignList.class.php");
 		return parent::__soapCall("GetCampaignList",array($PlentySoapRequest_GetCampaignList));
 	}
 	
@@ -3437,7 +3437,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetCouponListOfCampaign(PlentySoapRequest_GetCouponListOfCampaign $PlentySoapRequest_GetCouponListOfCampaign)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetCouponListOfCampaign.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetCouponListOfCampaign.class.php");
 		return parent::__soapCall("GetCouponListOfCampaign",array($PlentySoapRequest_GetCouponListOfCampaign));
 	}
 	
@@ -3452,7 +3452,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function ValidateCoupons(PlentySoapRequest_ValidateCoupons $PlentySoapRequest_ValidateCoupons)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_ValidateCoupons.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_ValidateCoupons.class.php");
 		return parent::__soapCall("ValidateCoupons",array($PlentySoapRequest_ValidateCoupons));
 	}
 	
@@ -3467,7 +3467,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function GetItemMediaFiles(PlentySoapRequest_GetItemMediaFiles $PlentySoapRequest_GetItemMediaFiles)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_GetItemMediaFiles.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_GetItemMediaFiles.class.php");
 		return parent::__soapCall("GetItemMediaFiles",array($PlentySoapRequest_GetItemMediaFiles));
 	}
 	
@@ -3482,7 +3482,7 @@ class PlentySoap extends SoapClient
 	 */
 	public function SetDynamicExport(PlentySoapRequest_SetDynamicExport $oPlentySoapRequest_SetDynamicExport)
 	{
-		require_once("E:\workspace\shopgeneral_soap_client/lib/soap/model/PlentySoapResponse_SetDynamicExport.class.php");
+		require_once("E:\workspace\soap_client/lib/soap/model/PlentySoapResponse_SetDynamicExport.class.php");
 		return parent::__soapCall("SetDynamicExport",array($oPlentySoapRequest_SetDynamicExport));
 	}
 	

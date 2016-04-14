@@ -2,6 +2,7 @@
 
 require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
 
+
 class MagentoItem {
 	
 	private $typeOfProduct = 'simple';#ProduktTyp
