@@ -7,6 +7,8 @@ class SoapCall_DeletionRun extends PlentySoapCall {
 	
 	private static $_CATEGORY = 1;
 	private static $_ITEM = 5;
+	private static $_ORDER = 3;
+	private static $_CUSTOMER = 4;
 	
 	private static $instance = null;
 	
@@ -60,13 +62,9 @@ class SoapCall_DeletionRun extends PlentySoapCall {
 			}
 			$i++;
 		}
+		var_dump($response);
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
-	}
-	
-	private function deleteImage($plenty_item_id){
-		$magento_item_id = $this->getMagentoItemID($plenty_item_id);
-		$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product_attribute_media.remove', array('product' => $magento_item_id, 'file' => '/i/m/image_344.jpg'));
 	}
 	
 	private function deleteItem($plenty_item_id){

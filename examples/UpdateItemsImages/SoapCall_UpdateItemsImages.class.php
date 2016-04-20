@@ -52,7 +52,8 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 				$magento_item_id = $this->getMagentoItemID($itemByPage->ItemsImages->item[$e]->ItemID);
 				$this->getLogger()->info(__FUNCTION__.'::  Add Image for'.' Item: '.$magento_item_id);
 				$imageFile = $this->getImageFile($itemByPage->ItemsImages->item[$e]);
-				$this->sendImageCall($magento_item_id, $imageFile);
+				$magento_file_name = $this->sendImageCall($magento_item_id, $imageFile);
+				$this->addMapping($itemByPage->ItemsImages->item[$e]->ImageID, $magento_item_id, $magento_file_name);
 				$e++;
 			}
 			
@@ -107,6 +108,7 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		}catch (Exception $e){
 			$this->getLogger()->info("::  Exception: ".$e->getMessage()." (skip)");
 		}
+		return $result;
 	}
 	
 	private function getItemsImagesByPage($lastUpdateFrom, $lastUpdateTill, $page){
@@ -116,6 +118,12 @@ class SoapCall_UpdateItemsImages extends PlentySoapCall {
 		$oPlentySoapRequest_GetItemsImages->Page = $page;
 		$response = $this->getPlentySoap()->GetItemsImages($oPlentySoapRequest_GetItemsImages);
 		return $response;
+	}
+	
+	private function addMapping($plenty_image_id, $magento_item_id, $magento_file_name){
+		$query = 'INSERT INTO `plenty_magento_images_mapping` '.DBUtils::buildInsert(	array(	'plenty_image_id' => $plenty_image_id, 'magento_item_id' =>	$magento_item_id, 'magento_file_name' =>	$magento_file_name));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		DBQuery::getInstance()->insert($query);
 	}
 	
 	private function getMagentoItemID($plenty_item_id){
