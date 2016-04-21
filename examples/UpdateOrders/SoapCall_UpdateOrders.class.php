@@ -42,6 +42,10 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 
 			$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
 			
+			
+			var_dump($plenty_customer_info);
+			exit;
+			
 			If($plenty_customer_info->Customers == NULL){
 				# Neuer Kunde im Plenty
 				$plenty_customer_id = $this->createPlentyCustomer($magento_order_info);
@@ -124,12 +128,22 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 12;
 			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "GB";
 		}else if($magento_order_info["shipping_address"]["country_id"] == "FR"){
-			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "FR";
 			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 10;
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "FR";
 		}else if($magento_order_info["shipping_address"]["country_id"] == "DE"){
 			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 1;
 			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "DE";
+		}else if($magento_order_info["shipping_address"]["country_id"] == "LU"){
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 17;
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "LU";
+		}else if($magento_order_info["shipping_address"]["country_id"] == "AT"){
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 2;
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "AT";
+		}else if($magento_order_info["shipping_address"]["country_id"] == "CH"){
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryID = 1;
+			$oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses->CountryISO2 = "CH";
 		}
+		
 		
 		$osetcustomerdeliveryaddresses = new   ArrayOfPlentysoaprequest_objectsetcustomerdeliveryaddresses();
 		$osetcustomerdeliveryaddresses->item = $oPlentySoapRequest_ObjectSetCustomerDeliveryAddresses;

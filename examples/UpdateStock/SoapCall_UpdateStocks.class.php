@@ -28,10 +28,10 @@ class SoapCall_UpdateStocks extends PlentySoapCall {
 	}
 	
 	private function initMagentoController() {
-		$magentoSoapClient = MagentoSoapClient::getInstance ();
-		$magentoSoapClient->doAuthentification ();
-		self::$magentoSession = $magentoSoapClient->getSession ();
-		self::$magentoClient = $magentoSoapClient->getSoapClient ();
+		$magentoSoapClient = MagentoSoapClient::getInstance();
+		$magentoSoapClient->doAuthentification();
+		self::$magentoSession = $magentoSoapClient->getSession();
+		self::$magentoClient = $magentoSoapClient->getSoapClient();
 	}
 	
 	/*
@@ -48,27 +48,47 @@ class SoapCall_UpdateStocks extends PlentySoapCall {
 		$result = $this->getPlentySoap()->GetCurrentStocks($oPlentySoapRequest_GetCurrentStocks);
 		$pages = $result->Pages;
 		
-		var_dump($result);
-		exit;
-		
 		$i = 0;
 		while($i < $pages){
 			
-			//  string(9) "258-242-0"
-			//  258 = Plenty Item Id
-			//  MagenID via PlentyID holen und Warenbestand setzen
+			$oPlentySoapRequest_GetCurrentStocks->Page = $i;
+			$result = $this->getPlentySoap()->GetCurrentStocks($oPlentySoapRequest_GetCurrentStocks);
 			
-			$result->CurrentStocks->item->SKU;
-			
-			var_dump($result);
-			exit;
+			$e = 0;
+			while($e < count($result->CurrentStocks->item)){
+				$plenty_item_id = explode('-', $result->CurrentStocks->item[$e]->SKU)[0];
+				$stock = $result->CurrentStocks->item[$e]->PhysicalStock;
+				$magento_item_id = $this->getMagentoItemID($plenty_item_id);
+				$this->updateStock($magento_item_id, $stock);
+				$e++;
+			}
+			$i++;
 		}
-		
-		
-		
 		
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
+	}
+	
+	private function updateStock($magento_item_id, $stock){
+		$stockItemData = array(
+				'use_config_manage_stock' => 0,
+		);
+		
+		$result = self::$magentoClient->call(
+				self::$magentoSession,
+				'product_stock.update',
+				array(
+						$magento_item_id,
+						$stockItemData
+				)
+		);
+	}
+	
+	private function getMagentoItemID($plenty_item_id){
+		$query = 'SELECT `magento_item_id` FROM `plenty_magento_item_mapping`'.DBUtils::buildWhere( array( 'plenty_item_id' => $plenty_item_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result->fetchAssoc()["magento_item_id"];
 	}
 	
 	private function checkLastUpdate(){

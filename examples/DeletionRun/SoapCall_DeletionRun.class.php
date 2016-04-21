@@ -62,7 +62,7 @@ class SoapCall_DeletionRun extends PlentySoapCall {
 			}
 			$i++;
 		}
-		var_dump($response);
+
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 	}

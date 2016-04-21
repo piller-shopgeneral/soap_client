@@ -107,18 +107,10 @@ class SoapCall_UpdateCategories extends PlentySoapCall {
 		
 		$category = array(
 				'name' => $name,
+				'available_sort_by' => 'position',
+				'default_sort_by' => 'position',
 				'is_active' => 1,
-    			'position' => 1,
-    			'available_sort_by' => 'position',
-   				'custom_design' => null,
-   				'custom_apply_to_products' => null,
-  				'custom_design_from' => null,
-    			'custom_design_to' => null,
-    			'custom_layout_update' => null,
-    			'default_sort_by' => 'position',
-    			'display_mode' => null,
-    			'landing_page' => null,
-    			'include_in_menu' => 1,
+    			'include_in_menu' => 0,
 		);
 
 		if($status == "neu"){
