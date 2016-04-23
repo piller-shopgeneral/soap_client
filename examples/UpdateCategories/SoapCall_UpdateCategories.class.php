@@ -36,66 +36,79 @@ class SoapCall_UpdateCategories extends PlentySoapCall {
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	 */
 	public function execute() {
-		$this->lastUpdateFrom = $this->checkLastUpdate();
-		$this->lastUpdateTo = time();
-		
-		$newUpdate = false;
-		$updatedItems = array();
-		
-		$response = $this->getPlentySoap()->GetCategoryPreview();
-		
-		$i = 0;
-		while($i < count($response->CategoriesPreview->item)){
-			if($response->CategoriesPreview->item[$i]->Name != NULL){
-				
-				$oPlentySoapRequest_GetCategories = new PlentySoapRequest_GetCategories();
-				$o = new PlentySoapRequestObject_GetCategories();
-				$o->CategoryID = $response->CategoriesPreview->item[$i]->CategoryID;
-				
-				$name = $response->CategoriesPreview->item[$i]->Name;
-				$oArrayOfPlentysoaprequestobject_getcategories = new ArrayOfPlentysoaprequestobject_getcategories();
-				$oArrayOfPlentysoaprequestobject_getcategories->item = $o;
-				$oPlentySoapRequest_GetCategories->GetCategories = $oArrayOfPlentysoaprequestobject_getcategories;
-				$response1 = $this->getPlentySoap()->GetCategories($oPlentySoapRequest_GetCategories);
-				
-				if($response1->Categories->item[0]->LastUpdateTimestamp > $this->lastUpdateFrom){
-					$updatedItems[$i] = $response1->Categories->item[0];
-					$newUpdate = true;
-					if($this->categoryAlreadyExist($response1->Categories->item[0]->CategoryID)){
-						$magentoCatID = $this->createMagentoCategory($response1->Categories->item[0], $name, "update");
-					}else {
-						$magentoCatID = $this->createMagentoCategory($response1->Categories->item[0], $name, "neu");
-					}
-					$this->insertIDsIntoDB(
-							$name, 
-							$response1->Categories->item[0]->CategoryID, 
-							$magentoCatID, 
-							$response1->Categories->item[0]->ParentCategoryID);
-				}
-			}
-			$i++;
-		}
-		
-		$updatedItems = array_values($updatedItems);
-		
-		if($newUpdate){
-			$j = 0;
-			while($j < count($updatedItems)){
-					$category_id = $updatedItems[$j]->CategoryID;
+		try
+		{
+			$this->getLogger()->info(":: Starte Update: Kategorien ::");
+			$this->lastUpdateFrom = $this->checkLastUpdate();
+			$this->lastUpdateTo = time();
 			
+			$newUpdate = false;
+			$updatedItems = array();
+			
+			$response = $this->getPlentySoap()->GetCategoryPreview();
+			
+			$i = 0;
+			while($i < count($response->CategoriesPreview->item)){
+				if($response->CategoriesPreview->item[$i]->Name != NULL){
+			
+					$oPlentySoapRequest_GetCategories = new PlentySoapRequest_GetCategories();
+					$o = new PlentySoapRequestObject_GetCategories();
+					$o->CategoryID = $response->CategoriesPreview->item[$i]->CategoryID;
+			
+					$name = $response->CategoriesPreview->item[$i]->Name;
+					$oArrayOfPlentysoaprequestobject_getcategories = new ArrayOfPlentysoaprequestobject_getcategories();
+					$oArrayOfPlentysoaprequestobject_getcategories->item = $o;
+					$oPlentySoapRequest_GetCategories->GetCategories = $oArrayOfPlentysoaprequestobject_getcategories;
+					$response1 = $this->getPlentySoap()->GetCategories($oPlentySoapRequest_GetCategories);
+			
+					if($response1->Categories->item[0]->LastUpdateTimestamp > $this->lastUpdateFrom){
+						$updatedItems[$i] = $response1->Categories->item[0];
+						$newUpdate = true;
+						if($this->categoryAlreadyExist($response1->Categories->item[0]->CategoryID)){
+							$this->getLogger()->info(":: Update Kategorien: '.$name.' ::");
+							$magentoCatID = $this->createMagentoCategory($response1->Categories->item[0], $name, "update");
+						}else {
+							$this->getLogger()->info(":: Erstelle Kategorien: '.$name.' ::");
+							$magentoCatID = $this->createMagentoCategory($response1->Categories->item[0], $name, "neu");
+						}
+						$this->insertIDsIntoDB(
+								$name,
+								$response1->Categories->item[0]->CategoryID,
+								$magentoCatID,
+								$response1->Categories->item[0]->ParentCategoryID);
+					}
+				}
+				$i++;
+			}
+			
+			$updatedItems = array_values($updatedItems);
+			
+			if($newUpdate){
+				$j = 0;
+				while($j < count($updatedItems)){
+					$category_id = $updatedItems[$j]->CategoryID;
+						
 					$magento_id = $this->getMagentoID($category_id);
 					$magento_parent_id = $this->getMagentoParentID($category_id);
-			
+						
 					if($magento_parent_id != NULL){
 						$successfull = $this->moveMagentoCategory($magento_id ,$magento_parent_id);
 						if($successfull){
 							$this->updateMagentoParentID($magento_id, $magento_parent_id);
 						}
 					}
-				$j++;
+					$j++;
+				}
 			}
+		} catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
+
 		$this->setLastUpdate($this->lastUpdateTo);
+		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Kategorien  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	private function moveMagentoCategory($magentoCategoryID ,$magentoParentID){

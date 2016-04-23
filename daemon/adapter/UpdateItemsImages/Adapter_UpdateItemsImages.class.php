@@ -25,13 +25,6 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 		$this->initMagentoController ();
 	}
 	
-	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateItemsImages)) {
-			self::$instance = new SoapCall_UpdateItemsImages();
-		}
-		return self::$instance;
-	}
-	
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
 		$magentoSoapClient->doAuthentification ();
@@ -43,30 +36,42 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	*/
 	public function execute() {
-		$this->lastUpdateFrom = $this->checkLastUpdate();
-		$this->lastUpdateTo = time();
-	
-		$imageItem = $this->getImages();
-	
-		$totalPages = $imageItem->Pages;
-	
-		$i = 0;
-		while($i < $totalPages){
-			$itemByPage = $this->getItemsImagesByPage($this->lastUpdateFrom, $this->lastUpdateTo, $i);
+		try
+		{
+			$this->getLogger()->info(":: Starte Update: Artikelbilder ::");
+			$this->lastUpdateFrom = $this->checkLastUpdate();
+			$this->lastUpdateTo = time();
 			
-			$e = 0;
-			while($e < count($itemByPage->ItemsImages->item)){
-				$magento_item_id = $this->getMagentoItemID($itemByPage->ItemsImages->item[$e]->ItemID);
-				$this->getLogger()->info(__FUNCTION__.'::  Add Image for'.' Item: '.$magento_item_id);
-				$imageFile = $this->getImageFile($itemByPage->ItemsImages->item[$e]);
-				$this->sendImageCall($magento_item_id, $imageFile);
-				$e++;
+			$imageItem = $this->getImages();
+			
+			$totalPages = $imageItem->Pages;
+			
+			$i = 0;
+			while($i < $totalPages){
+				$itemByPage = $this->getItemsImagesByPage($this->lastUpdateFrom, $this->lastUpdateTo, $i);
+					
+				$e = 0;
+				while($e < count($itemByPage->ItemsImages->item)){
+					$magento_item_id = $this->getMagentoItemID($itemByPage->ItemsImages->item[$e]->ItemID);
+					$this->getLogger()->info("::  Neues Artikelbild: ".$itemBase->ItemID);
+					$imageFile = $this->getImageFile($itemByPage->ItemsImages->item[$e]);
+					$magento_file_name = $this->sendImageCall($magento_item_id, $imageFile);
+					$this->getLogger()->info(":: Update Datenbank Mapping: ".$itemByPage->ItemsImages->item[$e]->ImageID." : ".$magento_item_id." : ".$magento_file_name);
+					$this->addMapping($itemByPage->ItemsImages->item[$e]->ImageID, $magento_item_id, $magento_file_name);
+					$e++;
+				}
+					
+				$i++;
 			}
-			
-			$i++;
+		} catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
+		
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Artikelbilder  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	private function getImages() {
@@ -114,6 +119,7 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 		}catch (Exception $e){
 			$this->getLogger()->info("::  Exception: ".$e->getMessage()." (skip)");
 		}
+		return $result;
 	}
 	
 	private function getItemsImagesByPage($lastUpdateFrom, $lastUpdateTill, $page){
@@ -123,6 +129,12 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 		$oPlentySoapRequest_GetItemsImages->Page = $page;
 		$response = $this->getPlentySoap()->GetItemsImages($oPlentySoapRequest_GetItemsImages);
 		return $response;
+	}
+	
+	private function addMapping($plenty_image_id, $magento_item_id, $magento_file_name){
+		$query = 'INSERT INTO `plenty_magento_images_mapping` '.DBUtils::buildInsert(	array(	'plenty_image_id' => $plenty_image_id, 'magento_item_id' =>	$magento_item_id, 'magento_file_name' =>	$magento_file_name));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		DBQuery::getInstance()->insert($query);
 	}
 	
 	private function getMagentoItemID($plenty_item_id){

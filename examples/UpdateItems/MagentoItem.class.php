@@ -53,11 +53,6 @@ class MagentoItem {
 			$catalogProductCreateEntityArray = array(
 					$this->typeOfProduct, $attributeSet['set_id'], $this->sku, $productData);
 		}
-		
-// 		if($type === "update"){
-// 			$catalogProductCreateEntityArray = array(
-// 					$this->sku, $productData);
-// 			}
 
 		if($type === "update"){
 			$catalogProductCreateEntityArray = array(

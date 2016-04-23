@@ -29,7 +29,7 @@ class AddOrder
     
     public function addOrderToDatabase($order_id){
     	if(self::$db->query("INSERT INTO magento_orders(order_id) VALUES (".$order_id.")")  === TRUE){
-    		printf("Added to DB.\n");
+    		
     	}
     }
 }

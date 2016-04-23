@@ -15,6 +15,8 @@ class Adapter_DeletionRun extends PlentySoapCall
 	
 	private static $_CATEGORY = 1;
 	private static $_ITEM = 5;
+	private static $_ORDER = 3;
+	private static $_CUSTOMER = 4;
 	
 	private static $instance = null;
 	
@@ -28,13 +30,6 @@ class Adapter_DeletionRun extends PlentySoapCall
 		parent::__construct ( __CLASS__ );
 		$this->initMagentoController ();
 	}
-	
-	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_DeletionRun)) {
-			self::$instance = new SoapCall_DeletionRun();
-		}
-		return self::$instance;
-	}
 
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
@@ -46,35 +41,41 @@ class Adapter_DeletionRun extends PlentySoapCall
 	/*
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	 */
-	public function execute() {		
-		$this->lastUpdateFrom = $this->checkLastUpdate();
-		$this->lastUpdateTo = time();
-		
-		$oPlentySoapRequest_GetDeleteLog = new PlentySoapRequest_GetDeleteLog();
-		$oPlentySoapRequest_GetDeleteLog->TimestampFrom = $this->lastUpdateFrom;
-		$oPlentySoapRequest_GetDeleteLog->TimestampTo = $this->lastUpdateTo;
-		
-		$response = $this->getPlentySoap()->GetDeleteLog($oPlentySoapRequest_GetDeleteLog);
-		
-		$i = 0;
-		while($i < count($response->DeleteLogList->item)){
-			$referenceType = $response->DeleteLogList->item[$i]->ReferenceType;
-			$id = $response->DeleteLogList->item[$i]->ReferenceValue;
+	public function execute() {
+		try
+		{
+			$this->getLogger()->info(":: Starte Loeschvorgang: Artikel, Kategorien ::");
 			
-			if($referenceType == self::$_ITEM){
-				$this->deleteItem($id);
-			}elseif($referenceType == self::$_CATEGORY){
-				$this->deleteCategory($id);
+			$this->lastUpdateFrom = $this->checkLastUpdate();
+			$this->lastUpdateTo = time();
+			
+			$oPlentySoapRequest_GetDeleteLog = new PlentySoapRequest_GetDeleteLog();
+			$oPlentySoapRequest_GetDeleteLog->TimestampFrom = $this->lastUpdateFrom;
+			$oPlentySoapRequest_GetDeleteLog->TimestampTo = $this->lastUpdateTo;
+			
+			$response = $this->getPlentySoap()->GetDeleteLog($oPlentySoapRequest_GetDeleteLog);
+			
+			$i = 0;
+			while($i < count($response->DeleteLogList->item)){
+				$referenceType = $response->DeleteLogList->item[$i]->ReferenceType;
+				$id = $response->DeleteLogList->item[$i]->ReferenceValue;
+					
+				if($referenceType == self::$_ITEM){
+					$this->deleteItem($id);
+				}elseif($referenceType == self::$_CATEGORY){
+					$this->deleteCategory($id);
+				}
+				$i++;
 			}
-			$i++;
+		} catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
+		
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
-	}
-	
-	private function deleteImage($plenty_item_id){
-		$magento_item_id = $this->getMagentoItemID($plenty_item_id);
-		$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product_attribute_media.remove', array('product' => $magento_item_id, 'file' => '/i/m/image_344.jpg'));
+		$this->getLogger()->info(":: Loeschvorgang: Artikel, Kategorien  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	private function deleteItem($plenty_item_id){

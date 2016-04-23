@@ -43,6 +43,7 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		// TODO Auto-generated method stub
 		try
 		{
+			$this->getLogger()->info(":: Starte Update: Artikel ::");
 			$this->lastUpdateFrom = $this->checkLastUpdate();
 			$this->lastUpdateTo = time();
 			
@@ -56,7 +57,6 @@ class SoapCall_UpdateItems extends PlentySoapCall
 
 				if( $itemsBaseByPageResponse->Success == true )
 				{
-					$this->getLogger()->info(__FUNCTION__.':: Request Page: '.$i.' :: Success');
 					$this->parseResponse($itemsBaseByPageResponse);
 				}
 				else
@@ -74,6 +74,8 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		
 	  	$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Artikel  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 		
 	private function parseResponse($response)
@@ -82,15 +84,16 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		{
 			foreach ($response->ItemsBase->item as $itemBase)
 			{
-				$this->getLogger()->info(__FUNCTION__.'::  Starte Update for'.' ItemID: '.$itemBase->ItemID);
+				$this->getLogger()->info("::  Update Artikel: ".$itemBase->ItemID);
 				$magentoItem = $this->convertToMagentoItem($itemBase);
 				$magentoItemID = $this->pushItemToMagento($magentoItem, $itemBase->ItemID);
 				if($magentoItemID != 1 && $magentoItemID != 0){
-					$this->getLogger()->info(__FUNCTION__.':: Add Item to mapping Table: '.$itemBase->ItemID.' :: '.$magentoItemID);
+					$this->getLogger()->info(":: Update Datenbank Mapping: ".$itemBase->ItemID." : ".$magentoItemID);
 					$this->addDBMapping($itemBase->ItemID, $magentoItemID);
 				}else {
-					if($magentoItemID == 1)
-						$this->getLogger()->info(__FUNCTION__.':: Item Updated: ');
+					if($magentoItemID == 1){
+						
+					}
 				}
 			}
 		}

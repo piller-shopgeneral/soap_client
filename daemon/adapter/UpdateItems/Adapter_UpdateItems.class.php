@@ -27,15 +27,6 @@ class Adapter_UpdateItems extends PlentySoapCall
 		$this->initMagentoController();
 	}
 	
-	public static function getInstance()
-	{
-		if( !isset(self::$instance) || !(self::$instance instanceof SoapCall_UpdateItems) )
-		{
-			self::$instance = new SoapCall_UpdateItems();
-		}
-		return self::$instance;
-	}
-	
 	private function initMagentoController(){
 		$magentoSoapClient = MagentoSoapClient::getInstance();
 		$magentoSoapClient->doAuthentification();
@@ -50,6 +41,7 @@ class Adapter_UpdateItems extends PlentySoapCall
 		// TODO Auto-generated method stub
 		try
 		{
+			$this->getLogger()->info(":: Starte Update: Artikel ::");
 			$this->lastUpdateFrom = $this->checkLastUpdate();
 			$this->lastUpdateTo = time();
 			
@@ -63,7 +55,6 @@ class Adapter_UpdateItems extends PlentySoapCall
 
 				if( $itemsBaseByPageResponse->Success == true )
 				{
-					$this->getLogger()->info(__FUNCTION__.':: Request Page: '.$i.' :: Success');
 					$this->parseResponse($itemsBaseByPageResponse);
 				}
 				else
@@ -81,6 +72,8 @@ class Adapter_UpdateItems extends PlentySoapCall
 		
 	  	$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Artikel  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 		
 	private function parseResponse($response)
@@ -89,15 +82,16 @@ class Adapter_UpdateItems extends PlentySoapCall
 		{
 			foreach ($response->ItemsBase->item as $itemBase)
 			{
-				$this->getLogger()->info(__FUNCTION__.'::  Starte Update for'.' ItemID: '.$itemBase->ItemID);
+				$this->getLogger()->info("::  Update Artikel: ".$itemBase->ItemID);
 				$magentoItem = $this->convertToMagentoItem($itemBase);
 				$magentoItemID = $this->pushItemToMagento($magentoItem, $itemBase->ItemID);
 				if($magentoItemID != 1 && $magentoItemID != 0){
-					$this->getLogger()->info(__FUNCTION__.':: Add Item to mapping Table: '.$itemBase->ItemID.' :: '.$magentoItemID);
+					$this->getLogger()->info(":: Update Datenbank Mapping: ".$itemBase->ItemID." : ".$magentoItemID);
 					$this->addDBMapping($itemBase->ItemID, $magentoItemID);
 				}else {
-					if($magentoItemID == 1)
-						$this->getLogger()->info(__FUNCTION__.':: Item Updated: ');
+					if($magentoItemID == 1){
+						
+					}
 				}
 			}
 		}
@@ -187,7 +181,7 @@ class Adapter_UpdateItems extends PlentySoapCall
 		$item->setName($itemTexts->ItemTexts->item[0]->Name);
 		$item->setCategory($magento_category_ids);
 		$item->setDescription($itemTexts->ItemTexts->item[0]->LongDescription);
-		$item->setShortDescription($itemTexts->ItemTexts->item[0]->ShortDescription);
+		$item->setShortDescription($itemTexts->ItemTexts->item[0]->MetaDescription); //$itemTexts->ItemTexts->item[0]->ShortDescription
 		$item->setWeight($itemBase->PriceSet->WeightInGramm);
 		if($itemBase->Availability->Inactive === 0){
 			$item->setStatus(1);

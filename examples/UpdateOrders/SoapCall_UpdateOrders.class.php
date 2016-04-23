@@ -33,33 +33,41 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	 */
 	public function execute() {
-		
-		$orderList = $this->getNewOrders();
-		
-		while($magento_order_id = $orderList->fetchAssoc()){
-
-			$magento_order_info = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $magento_order_id);
-
-			$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
+		try{
+			$this->getLogger()->info(":: Starte Update: Bestellungen ::");
+			$orderList = $this->getNewOrders();
 			
-			If($plenty_customer_info->Customers == NULL){
-				# Neuer Kunde im Plenty
-				$plenty_customer_id = $this->createPlentyCustomer($magento_order_info);
-				$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
-				$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
-				$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
-			}else {
-				# Bereits vorhandener Kunde im Plenty
-				$plenty_customer_id = $plenty_customer_info->Customers->item[0]->CustomerID;
-				$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
-				$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
-				$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+			while($magento_order_id = $orderList->fetchAssoc()){
+			
+				$magento_order_info = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $magento_order_id);
+			
+				$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
+				
+				If($plenty_customer_info->Customers == NULL){
+					# Neuer Kunde im Plenty
+					$plenty_customer_id = $this->createPlentyCustomer($magento_order_info);
+					$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
+					$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
+					$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+				}else {
+					# Bereits vorhandener Kunde im Plenty
+					$plenty_customer_id = $plenty_customer_info->Customers->item[0]->CustomerID;
+					$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
+					$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
+					$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+				}
+					
+				$this->removeOrderFromDatabase($magento_order_id);
 			}
-			
-			//$this->removeOrderFromDatabase($magento_order_id);
+		}catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
-	
+		
+		
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Bestellungen  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	private function createPlentyOrder($plenty_customer_id, $magento_order_info){
@@ -99,6 +107,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapObject_OrderHead->CustomerID = $plenty_customer_id;
 		$oPlentySoapObject_OrderHead->ExternalOrderID = $magento_order_info["increment_id"];
 		$oPlentySoapObject_OrderHead->OrderID = $magento_order_info["order_id"];
+		$oPlentySoapObject_OrderHead->OrderStatus = 1;
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"]["value"];
@@ -154,7 +163,9 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		return $response->Success;
 	}
 	
-	private function createPlentyCustomer($magento_order_info, $plenty_order_id){	
+	private function createPlentyCustomer($magento_order_info, $plenty_order_id){
+		$this->getLogger()->info(":: Erstelle/Update Kunde: FTC".$magento_order_info["customer_id"]);
+		
 		$oPlentySoapObject_Customer = new  PlentySoapObject_Customer();
 		$oPlentySoapObject_Customer->Company = $magento_order_info["billing_address"]["company"];
 		$oPlentySoapObject_Customer->CustomerNumber = 'FTC'.$magento_order_info["customer_id"];
@@ -274,7 +285,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 	}
 	
 	private function removeOrderFromDatabase($magento_order_id){
-		$query = 'DELETE FROM `magento_orders`'.DBUtils::buildWhere( array( 'order_id' => $magento_order_id["increment_id"]));
+		$query = 'DELETE FROM `magento_orders`'.DBUtils::buildWhere( array( 'order_id' => $magento_order_id["order_id"]));
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
 		$result = DBQuery::getInstance()->delete($query);
 	}

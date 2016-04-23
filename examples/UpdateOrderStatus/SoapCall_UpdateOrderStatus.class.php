@@ -36,25 +36,38 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	 */
 	public function execute() {		
-		$this->lastUpdateFrom = $this->checkLastUpdate();
-		$this->lastUpdateTo = time();
-		
-		$magento_orders = $this->getMagentoOrders();
-		
-		$i = 0;
-		while($i < count($magento_orders)){
-			if(strtotime($magento_orders[$i]["updated_at"]) > $this->lastUpdateFrom){
-				if($magento_orders[$i]["status"] == "processing"){
-					$status = 4;
-					var_dump($magento_orders[$i]);
-					$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+		try{
+			$this->getLogger()->info(":: Starte Update: Bestellstatus (processing)");
+			$this->lastUpdateFrom = $this->checkLastUpdate();
+			$this->lastUpdateTo = time();
+			
+			$magento_orders = $this->getMagentoOrders();
+			
+			$i = 0;
+			while($i < count($magento_orders)){
+				if(strtotime($magento_orders[$i]["updated_at"]) > $this->lastUpdateFrom){
+					if($magento_orders[$i]["status"] == "processing"){
+						$status = 3;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+						$this->getLogger()->info(":: Status Update: Bestellung(".$magento_orders[$i]["increment_id"].") Status = ".$magento_orders[$i]["status"]);
+					}
+					if($magento_orders[$i]["status"] == "cancled"){
+						$status = 6;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+						$this->getLogger()->info(":: Status Update: Bestellung(".$magento_orders[$i]["increment_id"].") Status = ".$magento_orders[$i]["status"]);
+					}
 				}
+				$i++;
 			}
-			$i++;
+		} catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
 
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Update: Bestellstatus (processing)  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	public function setOrderStatus($magento_increment_number, $status){

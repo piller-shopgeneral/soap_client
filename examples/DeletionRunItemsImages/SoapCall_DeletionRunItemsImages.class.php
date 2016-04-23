@@ -3,7 +3,7 @@
 require_once ROOT.'lib/soap/call/PlentySoapCall.abstract.php';
 require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
 
-class SoapCall_ImagesAbgleich extends PlentySoapCall {
+class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 	
 	private static $instance = null;
 	
@@ -16,8 +16,8 @@ class SoapCall_ImagesAbgleich extends PlentySoapCall {
 	}
 	
 	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_ImagesAbgleich)) {
-			self::$instance = new SoapCall_ImagesAbgleich();
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_DeletionRunItemsImages)) {
+			self::$instance = new SoapCall_DeletionRunItemsImages();
 		}
 		return self::$instance;
 	}
@@ -33,49 +33,57 @@ class SoapCall_ImagesAbgleich extends PlentySoapCall {
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	*/
 	public function execute() {
-		
-		$plentyImageIdsCache = $this->getPlentyImageIDs();
-		$magentoImagesIdsCache = array();
-		
-		$temp = $this->getMagentoImageIDs();
-		
-		$a = 0;
-		while($row = $temp->fetchAssoc()){
-			$magentoImagesIdsCache[$a] = $row["plenty_image_id"];
-			$a++;
-		}
-		
-		$temp = array_diff($magentoImagesIdsCache, $plentyImageIdsCache);
-		
-		$b = 0;
-		foreach($temp as &$id){
-			$result[$b] = $id;
-			$b++;
-		}
-		
-		$c = 0;
-		while($c < count($result)){
-			$imgData = $this->getMagentoImageData($result[$c]);
+		try{
+			$this->getLogger()->info(":: Starte Loeschvorgang: Artikelbilder ::");
 			
-			while ($row = $imgData->fetchAssoc())
-			{
-				$tmp[] = $row;
+			$plentyImageIdsCache = $this->getPlentyImageIDs();
+			$magentoImagesIdsCache = array();
+			
+			$temp = $this->getMagentoImageIDs();
+			
+			$a = 0;
+			while($row = $temp->fetchAssoc()){
+				$magentoImagesIdsCache[$a] = $row["plenty_image_id"];
+				$a++;
 			}
 			
-			var_dump($tmp);
+			$temp = array_diff($magentoImagesIdsCache, $plentyImageIdsCache);
 			
-			$magento_image_name = $tmp[0]["magento_file_name"];
-			$magento_item_id = $tmp[0]["magento_item_id"];
-			
-			$success = $this->removeImageFromMagento($magento_image_name, $magento_item_id);
-			if($success){
-				$this->removeImageFromDB($result[$c]);
-				$this->getLogger()->info("Removed Image: ".$magento_image_name." (From Magento Product ".$magento_item_id.")");
+			$b = 0;
+			foreach($temp as &$id){
+				$result[$b] = $id;
+				$b++;
 			}
-			$c++;
+			
+			$c = 0;
+			while($c < count($result)){
+				$imgData = $this->getMagentoImageData($result[$c]);
+					
+				while ($row = $imgData->fetchAssoc())
+				{
+					$tmp[] = $row;
+				}
+					
+				var_dump($tmp);
+					
+				$magento_image_name = $tmp[0]["magento_file_name"];
+				$magento_item_id = $tmp[0]["magento_item_id"];
+					
+				$success = $this->removeImageFromMagento($magento_image_name, $magento_item_id);
+				if($success){
+					$this->removeImageFromDB($result[$c]);
+					$this->getLogger()->info(":: Loesche Artikelbild: ".$magento_image_name." (Magento Artikel ".$magento_item_id.")");
+				}
+				$c++;
+			}
+		} catch(Exception $e)
+		{
+			$this->onExceptionAction ( $e );
 		}
 		
 		self::$magentoClient->endSession(self::$magentoSession);
+		$this->getLogger()->info(":: Loeschvorgang: Artikelbilder  - beendet ::");
+		$this->getLogger()->info("\n");
 	}
 	
 	private function removeImageFromMagento($magento_image_name, $magento_item_id){
