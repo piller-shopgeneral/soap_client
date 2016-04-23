@@ -42,10 +42,6 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 
 			$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
 			
-			
-			var_dump($plenty_customer_info);
-			exit;
-			
 			If($plenty_customer_info->Customers == NULL){
 				# Neuer Kunde im Plenty
 				$plenty_customer_id = $this->createPlentyCustomer($magento_order_info);
@@ -60,7 +56,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 				$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
 			}
 			
-			$this->removeOrderFromDatabase($magento_order_id);
+			//$this->removeOrderFromDatabase($magento_order_id);
 		}
 	
 		self::$magentoClient->endSession(self::$magentoSession);
@@ -90,6 +86,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			$oPlentySoapObject_OrderItem->SKU = $magento_order_info["items"][$i]["sku"];
 			$oPlentySoapObject_OrderItem->Quantity = $magento_order_info["items"][$i]["qty_ordered"];
 			$oPlentySoapObject_OrderItem->Price = $magento_order_info["items"][$i]["original_price"];
+			$oPlentySoapObject_OrderItem->Currency = "eu";
 			$oPlentySoapObject_OrderItem->WarehouseID = 1;
 			$oArrayOfPlentysoapobject_orderitem->item[$i] = $oPlentySoapObject_OrderItem;
 			$i++;
@@ -104,6 +101,8 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapObject_OrderHead->OrderID = $magento_order_info["order_id"];
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
+		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"]["value"];
+
 		return $oPlentySoapObject_OrderHead;
 	}
 	
@@ -175,17 +174,29 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
  		$oPlentySoapObject_Customer->FormOfAddress = 0;
  		
  		if($magento_order_info["billing_address"]["country_id"] == "EN"){
- 			$oPlentySoapObject_Customer->Language = "en";
  			$oPlentySoapObject_Customer->CountryID = 12;
  			$oPlentySoapObject_Customer->CountryISO2 = "GB";
+ 			$oPlentySoapObject_Customer->Language = "en";
  		}else if($magento_order_info["billing_address"]["country_id"] == "FR"){
+ 			$oPlentySoapObject_Customer->CountryID = 10;
  			$oPlentySoapObject_Customer->CountryISO2 = "FR";
  			$oPlentySoapObject_Customer->Language = "fr";
- 			$oPlentySoapObject_Customer->CountryID = 10;
  		}else if($magento_order_info["billing_address"]["country_id"] == "DE"){
  			$oPlentySoapObject_Customer->CountryID = 1;
- 			$oPlentySoapObject_Customer->Language = "de";
  			$oPlentySoapObject_Customer->CountryISO2 = "DE";
+ 			$oPlentySoapObject_Customer->Language = "de";
+ 		}else if($magento_order_info["billing_address"]["country_id"] == "LU"){
+ 			$oPlentySoapObject_Customer->CountryID = 17;
+ 			$oPlentySoapObject_Customer->CountryISO2 = "LU";
+ 			$oPlentySoapObject_Customer->Language = "fr";
+ 		}else if($magento_order_info["billing_address"]["country_id"] == "AT"){
+ 			$oPlentySoapObject_Customer->CountryID = 2;
+ 			$oPlentySoapObject_Customer->CountryISO2 = "AT";
+ 			$oPlentySoapObject_Customer->Language = "de";
+ 		}else if($magento_order_info["billing_address"]["country_id"] == "CH"){
+ 			$oPlentySoapObject_Customer->CountryID = 1;
+ 			$oPlentySoapObject_Customer->CountryISO2 = "CH";
+ 			$oPlentySoapObject_Customer->Language = "de";
  		}
  		
  		$oArrayOfPlentysoapobject_customer = new ArrayOfPlentysoapobject_customer();
