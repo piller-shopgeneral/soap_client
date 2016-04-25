@@ -40,7 +40,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			while($magento_order_id = $orderList->fetchAssoc()){
 			
 				$magento_order_info = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $magento_order_id);
-			
+
 				$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
 				
 				If($plenty_customer_info->Customers == NULL){
@@ -54,9 +54,17 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 					$plenty_customer_id = $plenty_customer_info->Customers->item[0]->CustomerID;
 					$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
 					$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
-					$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+					$response = $this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+					if($response->Success){
+						$i = 0;
+						while($i < count($response->ResponseMessages->item->SuccessMessages->item)){
+							if($response->ResponseMessages->item->SuccessMessages->item[$i]->Key == "OrderID"){
+								$plenty_order_id = $response->ResponseMessages->item->SuccessMessages->item[$i]->Value;
+								$this->addOrderMapping($plenty_order_id, $magento_order_id);
+							}
+						}
+					}
 				}
-					
 				$this->removeOrderFromDatabase($magento_order_id);
 			}
 		}catch(Exception $e)
@@ -82,6 +90,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapRequest_AddOrders->Orders = $oArrayOfPlentysoapobject_order;
 		
 		$response = $this->getPlentySoap()->AddOrders($oPlentySoapRequest_AddOrders);
+		return $response;
 	}
 	
 	private function createOrderItems($magento_order_info){
@@ -122,7 +131,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			$oPlentySoapObject_OrderHead->OrderStatus = 5;
 		}else if($order_status == "canceled"){
 			$oPlentySoapObject_OrderHead->OrderStatus = 6;
-		}else if($order_status == "on hold"){
+		}else if($order_status == "holded"){
 			$oPlentySoapObject_OrderHead->OrderStatus = 7;
 		}
 
@@ -281,6 +290,11 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oCustomersRequest = new PlentySoapRequest_GetCustomers();
 		$oCustomersRequest->Email = $email;
 		$response = $this->getPlentySoap()->GetCustomers($oCustomersRequest);
+		return $response;
+	}
+	
+	private function addOrderMapping(){
+		
 		return $response;
 	}
 	

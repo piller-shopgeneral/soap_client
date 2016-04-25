@@ -57,13 +57,15 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 					}else if($order_status == "complete"){
 						$status = 4;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+						$this->addPayment($magento_orders[$i], $amount, $plenty_order_id);
+						
 					}else if($order_status == "closed"){
 						$status = 5;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
 					}else if($order_status == "canceled"){
 						$status = 6;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
-					}else if($order_status == "on hold"){
+					}else if($order_status == "holded"){
 						$status = 7;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
 					}
@@ -99,6 +101,23 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 	private function getMagentoOrders(){
 		$result = self::$magentoClient->call(self::$magentoSession, 'order.list');
 		return $result;
+	}
+	
+	private function addPayment($magento_order, $amount, $plenty_order_id){
+		$payment_method = $magento_order["payment"]["method"];
+		$payment_trans_id = $magento_order["payment"]["last_trans_id"];
+		$oArrayOfPlentysoapobject_addincomingpayments = new ArrayOfPlentysoapobject_addincomingpayments();
+		$oArrayOfPlentysoapobject_addincomingpayments->item->Amount = $amount;
+		$oArrayOfPlentysoapobject_addincomingpayments->item->ReasonForPayment = $payment_method.":".$payment_trans_id;
+		$oArrayOfPlentysoapobject_addincomingpayments->item->TransactionID = $payment_trans_id;
+		$oArrayOfPlentysoapobject_addincomingpayments->item->CustomerID = $plenty_customer_id;
+		$oArrayOfPlentysoapobject_addincomingpayments->item->Currency = "Euro";
+		$oArrayOfPlentysoapobject_addincomingpayments->item->MethodOfPaymentID = 0;
+		
+		$oPlentySoapRequest_AddIncomingPayments = new PlentySoapRequest_AddIncomingPayments();
+		$oPlentySoapRequest_AddIncomingPayments->IncomingPayments = $oArrayOfPlentysoapobject_addincomingpayments;
+		
+		$this->getPlentySoap()->AddIncomingPayments($oPlentySoapRequest_AddIncomingPayments);
 	}
 	
 	private function checkLastUpdate(){

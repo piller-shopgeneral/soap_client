@@ -122,7 +122,7 @@ class Adapter_UpdateOrders extends PlentySoapCall
 			$oPlentySoapObject_OrderHead->OrderStatus = 5;
 		}else if($order_status == "canceled"){
 			$oPlentySoapObject_OrderHead->OrderStatus = 6;
-		}else if($order_status == "on hold"){
+		}else if($order_status == "holded"){
 			$oPlentySoapObject_OrderHead->OrderStatus = 7;
 		}
 

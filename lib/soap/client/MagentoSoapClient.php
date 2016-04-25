@@ -56,7 +56,7 @@ class MagentoSoapClient
 		
 		try
 		{
-			$this->getLogger()->info(__FUNCTION__.': starting Magento Client ');
+			$this->getLogger()->debug(__FUNCTION__.': starting Magento Client ');
 			self::$session = self::$client->login(MAGENTO_SOAP_USER, MAGENTO_SOAP_PASSWORD);
 		}	
 			catch(Exception $e)
@@ -65,7 +65,7 @@ class MagentoSoapClient
 			throw $e;
 		}
 
-		$this->getLogger()->info(__FUNCTION__.': received token: '.self::$session );
+		$this->getLogger()->debug(__FUNCTION__.': received token: '.self::$session );
 	}
 
 

@@ -63,7 +63,7 @@ class Adapter_UpdateOrderStatus extends PlentySoapCall
 					}else if($order_status == "canceled"){
 						$status = 6;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
-					}else if($order_status == "on hold"){
+					}else if($order_status == "holded"){
 						$status = 7;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
 					}
