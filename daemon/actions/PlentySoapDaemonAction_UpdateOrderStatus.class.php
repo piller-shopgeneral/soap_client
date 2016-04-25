@@ -8,7 +8,7 @@ require_once 'PlentySoapDaemonAction.abstract.php';
  * @author phileon
  * @copyright plentymarkets GmbH www.plentymarkets.com
  */
-class PlentySoapDaemonAction_UpdateOrders extends PlentySoapDaemonAction 
+class PlentySoapDaemonAction_UpdateOrderStatus extends PlentySoapDaemonAction 
 {
 	public function __construct()
 	{
@@ -29,7 +29,7 @@ class PlentySoapDaemonAction_UpdateOrders extends PlentySoapDaemonAction
 	{
 		$soapCallAdapter = $this->getSoapCallAdapterClass($this->getClassPostfix(__CLASS__));
 		
-		if($soapCallAdapter instanceof Adapter_UpdateItems)
+		if($soapCallAdapter instanceof Adapter_UpdateOrderStatus)
 		{
 			$soapCallAdapter->setVerbose(self::VERBOSE);
 			

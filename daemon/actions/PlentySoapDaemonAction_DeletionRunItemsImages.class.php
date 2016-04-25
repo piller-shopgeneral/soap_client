@@ -29,7 +29,7 @@ class PlentySoapDaemonAction_DeletionRunItemsImages extends PlentySoapDaemonActi
 	{
 		$soapCallAdapter = $this->getSoapCallAdapterClass($this->getClassPostfix(__CLASS__));
 		
-		if($soapCallAdapter instanceof Adapter_UpdateItems)
+		if($soapCallAdapter instanceof Adapter_DeletionRunItemsImages)
 		{
 			$soapCallAdapter->setVerbose(self::VERBOSE);
 			
