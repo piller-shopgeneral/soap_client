@@ -46,16 +46,28 @@ class Adapter_UpdateOrderStatus extends PlentySoapCall
 			$i = 0;
 			while($i < count($magento_orders)){
 				if(strtotime($magento_orders[$i]["updated_at"]) > $this->lastUpdateFrom){
-					if($magento_orders[$i]["status"] == "processing"){
+					
+					$order_status = $magento_orders[$i]["status"];
+					if($order_status == "pending"){
+						$status = 1;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+					}else if($order_status == "processing"){
 						$status = 3;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
-						$this->getLogger()->info(":: Status Update: Bestellung(".$magento_orders[$i]["increment_id"].") Status = ".$magento_orders[$i]["status"]);
-					}
-					if($magento_orders[$i]["status"] == "cancled"){
+					}else if($order_status == "complete"){
+						$status = 4;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+					}else if($order_status == "closed"){
+						$status = 5;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
+					}else if($order_status == "canceled"){
 						$status = 6;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
-						$this->getLogger()->info(":: Status Update: Bestellung(".$magento_orders[$i]["increment_id"].") Status = ".$magento_orders[$i]["status"]);
+					}else if($order_status == "on hold"){
+						$status = 7;
+						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
 					}
+					$this->getLogger()->info(":: Status Update: Bestellung(".$magento_orders[$i]["increment_id"].") Status = ".$magento_orders[$i]["status"]);
 				}
 				$i++;
 			}

@@ -107,10 +107,24 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapObject_OrderHead->CustomerID = $plenty_customer_id;
 		$oPlentySoapObject_OrderHead->ExternalOrderID = $magento_order_info["increment_id"];
 		$oPlentySoapObject_OrderHead->OrderID = $magento_order_info["order_id"];
-		$oPlentySoapObject_OrderHead->OrderStatus = 1;
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"]["value"];
+		
+		$order_status = $magento_order_info["status_history"]["status"] ;
+		if($order_status == "pending"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 1;
+		}else if($order_status == "processing"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 3;
+		}else if($order_status == "complete"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 4;
+		}else if($order_status == "closed"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 5;
+		}else if($order_status == "canceled"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 6;
+		}else if($order_status == "on hold"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 7;
+		}
 
 		return $oPlentySoapObject_OrderHead;
 	}
