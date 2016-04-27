@@ -109,7 +109,7 @@ class Adapter_UpdateCategories extends PlentySoapCall
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Kategorien  - beendet ::");
-		$this->getLogger()->info("\n");
+		echo "\n";
 	}
 	
 	private function moveMagentoCategory($magentoCategoryID ,$magentoParentID){

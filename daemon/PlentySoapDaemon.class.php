@@ -80,6 +80,7 @@ class PlentySoapDaemon
 		/*
 		 * the daemon should only be running once!
 		 */
+		error_reporting(E_ALL & ~E_NOTICE);
 		if( $this->checkPidFile() )
 		{
 			$this->getLogger()->crit(__FUNCTION__ .' ERROR PlentySoapDaemon already running, shutting down!');

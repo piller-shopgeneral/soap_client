@@ -68,6 +68,7 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Bestellungen  - beendet ::");
+		echo "\n";
 	}
 	
 	private function addPayment($magento_order){

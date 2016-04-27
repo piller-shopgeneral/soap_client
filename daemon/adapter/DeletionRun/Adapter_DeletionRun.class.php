@@ -75,7 +75,7 @@ class Adapter_DeletionRun extends PlentySoapCall
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Loeschvorgang: Artikel, Kategorien  - beendet ::");
-		$this->getLogger()->info("\n");
+		echo "\n";
 	}
 	
 	private function deleteItem($plenty_item_id){

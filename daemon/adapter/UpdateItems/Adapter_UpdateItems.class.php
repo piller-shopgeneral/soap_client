@@ -73,7 +73,7 @@ class Adapter_UpdateItems extends PlentySoapCall
 	  	$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Artikel  - beendet ::");
-		$this->getLogger()->info("\n");
+		echo "\n";
 	}
 		
 	private function parseResponse($response)

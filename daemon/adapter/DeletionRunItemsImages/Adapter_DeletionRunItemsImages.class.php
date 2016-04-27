@@ -84,7 +84,7 @@ class Adapter_DeletionRunItemsImages extends PlentySoapCall
 		
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Loeschvorgang: Artikelbilder  - beendet ::");
-		$this->getLogger()->info("\n");
+		echo "\n";
 	}
 	
 	private function removeImageFromMagento($magento_image_name, $magento_item_id){
