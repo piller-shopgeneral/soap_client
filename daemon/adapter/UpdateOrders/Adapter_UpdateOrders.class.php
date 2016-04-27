@@ -17,6 +17,9 @@ class Adapter_UpdateOrders extends PlentySoapCall
 	private static $magentoClient = null;
 	private static $magentoSession = null;
 	
+	private $lastUpdateFrom = null;
+	private $lastUpdateTo = null;
+	
 	public function __construct() {
 		parent::__construct ( __CLASS__ );
 		$this->initMagentoController ();
@@ -35,39 +38,89 @@ class Adapter_UpdateOrders extends PlentySoapCall
 	public function execute() {
 		try{
 			$this->getLogger()->info(":: Starte Update: Bestellungen ::");
-			$orderList = $this->getNewOrders();
 			
-			while($magento_order_id = $orderList->fetchAssoc()){
+			$this->lastUpdateFrom = $this->checkLastUpdate();
+			$this->lastUpdateTo = time();
+
+			$orderList = $this->getMagentoOrders($this->lastUpdateFrom);
 			
-				$magento_order_info = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $magento_order_id);
-			
+			$i = 0;
+			while($i < count($orderList)){
+				$magento_order_info = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $orderList[$i]);
 				$plenty_customer_info = $this->getPlentyCustomerByEmail($magento_order_info["customer_email"]);
-				
-				If($plenty_customer_info->Customers == NULL){
-					# Neuer Kunde im Plenty
+				if($plenty_customer_info == NULL){
 					$plenty_customer_id = $this->createPlentyCustomer($magento_order_info);
-					$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
-					$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
-					$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
 				}else {
-					# Bereits vorhandener Kunde im Plenty
 					$plenty_customer_id = $plenty_customer_info->Customers->item[0]->CustomerID;
-					$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
-					$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
-					$this->createPlentyOrder($plenty_customer_id, $magento_order_info);
 				}
-					
-				$this->removeOrderFromDatabase($magento_order_id);
+				$this->buildOrder($plenty_customer_id, $magento_order_info, $orderList[$i]);
+				if($magento_order_info["payment"]["base_amount_paid"] != "0"){
+					$this->addPayment($magento_order_info);
+				}
+				$i++;
 			}
+			
 		}catch(Exception $e)
 		{
 			$this->onExceptionAction ( $e );
 		}
-		
-		
+
+		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Bestellungen  - beendet ::");
-		$this->getLogger()->info("\n");
+	}
+	
+	private function addPayment($magento_order){
+	
+		$plenty_order_infos = $this->getPlentyOrderInfos($magento_order["increment_id"]);
+	
+		if($plenty_order_infos->getNumRows() > 0){
+			
+			while($plenty_order = $plenty_order_infos->fetchAssoc()){
+				$plenty_order_id = $plenty_order["plenty_order_id"];
+				$plenty_customer_id = $plenty_order["plenty_customer_id"];
+			}
+			
+			
+			$payment_method = $magento_order["payment"]["method"];
+			$payment_trans_id = $magento_order["payment"]["last_trans_id"];
+			
+			$oPlentySoapObject_AddIncomingPayments = new PlentySoapObject_AddIncomingPayments();
+			$oPlentySoapObject_AddIncomingPayments->Amount = $magento_order["payment"]["base_amount_paid"];
+			$oPlentySoapObject_AddIncomingPayments->ReasonForPayment = $payment_method.":".$payment_trans_id;
+			$oPlentySoapObject_AddIncomingPayments->TransactionID = $magento_order["payment"]["payment_id"]."-".$plenty_order_id;
+			$oPlentySoapObject_AddIncomingPayments->CustomerID = $plenty_customer_id;
+			$oPlentySoapObject_AddIncomingPayments->Currency = "EUR";
+			$oPlentySoapObject_AddIncomingPayments->MethodOfPaymentID = 0;
+			$oPlentySoapObject_AddIncomingPayments->OrderID = $plenty_order_id;
+			$oPlentySoapObject_AddIncomingPayments->TransactionTime = strtotime($magento_order["status_history"][0]["created_at"]);
+			
+			$oArrayOfPlentysoapobject_addincomingpayments = new ArrayOfPlentysoapobject_addincomingpayments();
+			$oArrayOfPlentysoapobject_addincomingpayments->item = $oPlentySoapObject_AddIncomingPayments;
+				
+			$oPlentySoapRequest_AddIncomingPayments = new PlentySoapRequest_AddIncomingPayments();
+			$oPlentySoapRequest_AddIncomingPayments->IncomingPayments = $oArrayOfPlentysoapobject_addincomingpayments;
+				
+			$result = $this->getPlentySoap()->AddIncomingPayments($oPlentySoapRequest_AddIncomingPayments);
+		}
+	
+	}
+	
+	private function buildOrder($plenty_customer_id, $magento_order_info, $magento_order_id){
+		$this->createPlentyCustomer($magento_order_info, $plenty_customer_id);
+		$this->createPlentyDeliveryAdress($magento_order_info, $plenty_customer_id);
+		$response = $this->createPlentyOrder($plenty_customer_id, $magento_order_info);
+		
+		if($response->Success){
+			$i = 0;
+			while($i < count($response->ResponseMessages->item[0]->SuccessMessages->item)){
+				if($response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Key == "OrderID"){
+					$plenty_order_id = $response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Value;
+					$this->addOrderMapping($plenty_order_id, $magento_order_id, $plenty_customer_id, $magento_order_info["customer_id"]);
+				}
+				$i++;
+			}
+		}
 	}
 	
 	private function createPlentyOrder($plenty_customer_id, $magento_order_info){
@@ -82,6 +135,7 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		$oPlentySoapRequest_AddOrders->Orders = $oArrayOfPlentysoapobject_order;
 		
 		$response = $this->getPlentySoap()->AddOrders($oPlentySoapRequest_AddOrders);
+		return $response;
 	}
 	
 	private function createOrderItems($magento_order_info){
@@ -93,8 +147,8 @@ class Adapter_UpdateOrders extends PlentySoapCall
 			$oPlentySoapObject_OrderItem->ItemID = $this->getPlentyItemID($magento_order_info["items"][$i]["product_id"]);
 			$oPlentySoapObject_OrderItem->SKU = $magento_order_info["items"][$i]["sku"];
 			$oPlentySoapObject_OrderItem->Quantity = $magento_order_info["items"][$i]["qty_ordered"];
-			$oPlentySoapObject_OrderItem->Price = $magento_order_info["items"][$i]["original_price"];
-			$oPlentySoapObject_OrderItem->Currency = "eu";
+			$oPlentySoapObject_OrderItem->Price = $magento_order_info["items"][$i]["price_incl_tax"];
+			$oPlentySoapObject_OrderItem->Currency = "EUR";
 			$oPlentySoapObject_OrderItem->WarehouseID = 1;
 			$oArrayOfPlentysoapobject_orderitem->item[$i] = $oPlentySoapObject_OrderItem;
 			$i++;
@@ -109,21 +163,11 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		$oPlentySoapObject_OrderHead->OrderID = $magento_order_info["order_id"];
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
-		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"]["value"];
+		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
 		
-		$order_status = $magento_order_info["status_history"]["status"] ;
-		if($order_status == "pending"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 1;
-		}else if($order_status == "processing"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 3;
-		}else if($order_status == "complete"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 4;
-		}else if($order_status == "closed"){
+		$order_status = $magento_order_info["status"];
+		if($order_status == "complete"){
 			$oPlentySoapObject_OrderHead->OrderStatus = 5;
-		}else if($order_status == "canceled"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 6;
-		}else if($order_status == "holded"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 7;
 		}
 
 		return $oPlentySoapObject_OrderHead;
@@ -277,6 +321,13 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		return $adressArr;
 	}
 	
+	private function getPlentyOrderInfos($magento_order_id){
+		$query = 'SELECT  `plenty_order_id`, `plenty_customer_id` FROM `plenty_magento_orders_mapping`'.DBUtils::buildWhere( array( 'magento_order_id' => $magento_order_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result;
+	}
+	
 	private function getPlentyCustomerByEmail($email){
 		$oCustomersRequest = new PlentySoapRequest_GetCustomers();
 		$oCustomersRequest->Email = $email;
@@ -284,11 +335,26 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		return $response;
 	}
 	
-	private function getNewOrders(){
-		$query = 'Select `order_id` FROM `magento_orders`';
+	private function addOrderMapping($plenty_order_id, $magento_order_id, $plenty_customer_id, $magento_customer_id){
+		$query = 'REPLACE INTO `plenty_magento_orders_mapping` '.DBUtils::buildInsert(	array(	'plenty_order_id' => $plenty_order_id, 'magento_order_id'	=>	$magento_order_id, 'plenty_customer_id' => $plenty_customer_id, 'magento_customer_id' => $magento_customer_id));
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		$response = DBQuery::getInstance()->select($query);
-		return $response;
+		DBQuery::getInstance()->replace($query);
+	}
+	
+	private function getMagentoOrders($lastUpdate){
+		
+		$result = self::$magentoClient->call(self::$magentoSession, 'order.list');
+		
+		$i = 0;
+		$e = 0;
+		while($i < count($result)){
+			if(strtotime($result[$i]["updated_at"]) > $lastUpdate && $result[$i]["status"] == "complete"){
+				$orders[$e] = $result[$i]["increment_id"];
+				$e++;
+			}
+			$i++;
+		}
+		return $orders;
 	}
 	
 	private function getPlentyItemID($magento_item_id){
@@ -298,10 +364,17 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		return $result->fetchAssoc()["plenty_item_id"];
 	}
 	
-	private function removeOrderFromDatabase($magento_order_id){
-		$query = 'DELETE FROM `magento_orders`'.DBUtils::buildWhere( array( 'order_id' => $magento_order_id["order_id"]));
+	private function checkLastUpdate(){
+		$query = 'SELECT `last_update` FROM `plenty_last_status_update`'.DBUtils::buildWhere( array( 'id' => 1));
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		$result = DBQuery::getInstance()->delete($query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result->fetchAssoc()["last_update"];
+	}
+	
+	private function setLastUpdate($lastUpdateTill){
+		$query = 'REPLACE INTO `plenty_last_status_update` '.DBUtils::buildInsert(	array(	'id' => 1, 'last_update'	=>	$this->lastUpdateTo));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		DBQuery::getInstance()->replace($query);
 	}
 }
 

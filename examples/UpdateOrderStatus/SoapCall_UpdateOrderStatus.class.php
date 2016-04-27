@@ -57,8 +57,7 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 					}else if($order_status == "complete"){
 						$status = 4;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
-						$this->addPayment($magento_orders[$i], $amount, $plenty_order_id);
-						
+						$this->addPayment($magento_orders[$i]);
 					}else if($order_status == "closed"){
 						$status = 5;
 						$this->setOrderStatus($magento_orders[$i]["increment_id"], $status);
@@ -103,21 +102,42 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 		return $result;
 	}
 	
-	private function addPayment($magento_order, $amount, $plenty_order_id){
-		$payment_method = $magento_order["payment"]["method"];
-		$payment_trans_id = $magento_order["payment"]["last_trans_id"];
-		$oArrayOfPlentysoapobject_addincomingpayments = new ArrayOfPlentysoapobject_addincomingpayments();
-		$oArrayOfPlentysoapobject_addincomingpayments->item->Amount = $amount;
-		$oArrayOfPlentysoapobject_addincomingpayments->item->ReasonForPayment = $payment_method.":".$payment_trans_id;
-		$oArrayOfPlentysoapobject_addincomingpayments->item->TransactionID = $payment_trans_id;
-		$oArrayOfPlentysoapobject_addincomingpayments->item->CustomerID = $plenty_customer_id;
-		$oArrayOfPlentysoapobject_addincomingpayments->item->Currency = "Euro";
-		$oArrayOfPlentysoapobject_addincomingpayments->item->MethodOfPaymentID = 0;
+	private function addPayment($magento_order){
 		
-		$oPlentySoapRequest_AddIncomingPayments = new PlentySoapRequest_AddIncomingPayments();
-		$oPlentySoapRequest_AddIncomingPayments->IncomingPayments = $oArrayOfPlentysoapobject_addincomingpayments;
+		$plenty_order_infos = $this->getPlentyOrderInfos($magento_order["increment_id"]);
 		
-		$this->getPlentySoap()->AddIncomingPayments($oPlentySoapRequest_AddIncomingPayments);
+		if($plenty_order_infos->getNumRows() > 0){
+			
+			$magento_order_info = $this->getMagentoOrderInfo($magento_order["increment_id"]);
+			
+			while($plenty_order = $plenty_order_infos->fetchAssoc()){
+				$plenty_order_id = $plenty_order["plenty_order_id"];
+				$plenty_customer_id = $plenty_order["plenty_customer_id"];
+			}
+			
+			$payment_method = $magento_order["payment"]["method"];
+			$payment_trans_id = $magento_order["payment"]["last_trans_id"];
+			
+			$oArrayOfPlentysoapobject_addincomingpayments = new ArrayOfPlentysoapobject_addincomingpayments();
+			$oArrayOfPlentysoapobject_addincomingpayments->item->Amount = $magento_order_info["payment"]["base_amount_paid"];
+			$oArrayOfPlentysoapobject_addincomingpayments->item->ReasonForPayment = $payment_method.":".$payment_trans_id;
+			$oArrayOfPlentysoapobject_addincomingpayments->item->TransactionID = $payment_trans_id;
+			$oArrayOfPlentysoapobject_addincomingpayments->item->CustomerID = $plenty_customer_id;
+			$oArrayOfPlentysoapobject_addincomingpayments->item->Currency = "EUR";
+			$oArrayOfPlentysoapobject_addincomingpayments->item->MethodOfPaymentID = 0;
+			$oArrayOfPlentysoapobject_addincomingpayments->item->OrderID = $plenty_order_id;
+			
+			$oPlentySoapRequest_AddIncomingPayments = new PlentySoapRequest_AddIncomingPayments();
+			$oPlentySoapRequest_AddIncomingPayments->IncomingPayments = $oArrayOfPlentysoapobject_addincomingpayments;
+			
+			$this->getPlentySoap()->AddIncomingPayments($oPlentySoapRequest_AddIncomingPayments);
+		}
+		
+	}
+	
+	private function getMagentoOrderInfo($magento_order_id){
+		$result = self::$magentoClient->call(self::$magentoSession, 'sales_order.info', $magento_order_id);
+		return $result;
 	}
 	
 	private function checkLastUpdate(){
@@ -125,6 +145,13 @@ class SoapCall_UpdateOrderStatus extends PlentySoapCall {
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
 		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
 		return $result->fetchAssoc()["last_update"];
+	}
+	
+	private function getPlentyOrderInfos($magento_order_id){
+		$query = 'SELECT  `plenty_order_id`, `plenty_customer_id` FROM `plenty_magento_orders_mapping`'.DBUtils::buildWhere( array( 'magento_order_id' => $magento_order_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result;
 	}
 	
 	private function setLastUpdate($lastUpdateTill){
