@@ -8,7 +8,7 @@ require_once 'PlentySoapDaemonAction.abstract.php';
  * @author phileon
  * @copyright plentymarkets GmbH www.plentymarkets.com
  */
-class PlentySoapDaemonAction_DeletionRun extends PlentySoapDaemonAction 
+class PlentySoapDaemonAction_DeletionRunItems extends PlentySoapDaemonAction 
 {
 	public function __construct()
 	{
@@ -29,7 +29,7 @@ class PlentySoapDaemonAction_DeletionRun extends PlentySoapDaemonAction
 	{
 		$soapCallAdapter = $this->getSoapCallAdapterClass($this->getClassPostfix(__CLASS__));
 		
-		if($soapCallAdapter instanceof Adapter_DeletionRun)
+		if($soapCallAdapter instanceof Adapter_DeletionRunItems)
 		{
 			$soapCallAdapter->setVerbose(self::VERBOSE);
 			

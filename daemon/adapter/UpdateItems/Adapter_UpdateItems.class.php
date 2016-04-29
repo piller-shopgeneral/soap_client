@@ -27,6 +27,15 @@ class Adapter_UpdateItems extends PlentySoapCall
 		$this->initMagentoController();
 	}
 	
+	public static function getInstance()
+	{
+		if( !isset(self::$instance) || !(self::$instance instanceof SoapCall_UpdateItems) )
+		{
+			self::$instance = new SoapCall_UpdateItems();
+		}
+		return self::$instance;
+	}
+	
 	private function initMagentoController(){
 		$magentoSoapClient = MagentoSoapClient::getInstance();
 		$magentoSoapClient->doAuthentification();

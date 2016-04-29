@@ -23,6 +23,13 @@ class Adapter_DeletionRunItemsImages extends PlentySoapCall
 		$this->initMagentoController ();
 	}
 	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_DeletionRunItemsImages)) {
+			self::$instance = new SoapCall_DeletionRunItemsImages();
+		}
+		return self::$instance;
+	}
+	
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
 		$magentoSoapClient->doAuthentification ();

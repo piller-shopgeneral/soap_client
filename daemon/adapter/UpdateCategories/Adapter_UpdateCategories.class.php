@@ -26,6 +26,13 @@ class Adapter_UpdateCategories extends PlentySoapCall
 		$this->initMagentoController ();
 	}
 	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateCategories)) {
+			self::$instance = new SoapCall_UpdateCategories();
+		}
+		return self::$instance;
+	}
+	
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
 		$magentoSoapClient->doAuthentification ();
@@ -109,7 +116,7 @@ class Adapter_UpdateCategories extends PlentySoapCall
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Kategorien  - beendet ::");
-		echo "\n";
+		$this->getLogger()->info("\n");
 	}
 	
 	private function moveMagentoCategory($magentoCategoryID ,$magentoParentID){

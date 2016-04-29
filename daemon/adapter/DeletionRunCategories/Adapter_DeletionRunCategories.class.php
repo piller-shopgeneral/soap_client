@@ -10,13 +10,10 @@ require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
  * @author phileon
  * @copyright plentymarkets GmbH www.plentymarkets.com
  */
-class Adapter_DeletionRun extends PlentySoapCall 
+class Adapter_DeletionRunCategories extends PlentySoapCall 
 {
 	
 	private static $_CATEGORY = 1;
-	private static $_ITEM = 5;
-	private static $_ORDER = 3;
-	private static $_CUSTOMER = 4;
 	
 	private static $instance = null;
 	
@@ -44,7 +41,7 @@ class Adapter_DeletionRun extends PlentySoapCall
 	public function execute() {
 		try
 		{
-			$this->getLogger()->info(":: Starte Loeschvorgang: Artikel, Kategorien ::");
+			$this->getLogger()->info(":: Starte Loeschvorgang: Kategorien ::");
 			
 			$this->lastUpdateFrom = $this->checkLastUpdate();
 			$this->lastUpdateTo = time();
@@ -52,18 +49,14 @@ class Adapter_DeletionRun extends PlentySoapCall
 			$oPlentySoapRequest_GetDeleteLog = new PlentySoapRequest_GetDeleteLog();
 			$oPlentySoapRequest_GetDeleteLog->TimestampFrom = $this->lastUpdateFrom;
 			$oPlentySoapRequest_GetDeleteLog->TimestampTo = $this->lastUpdateTo;
+			$oPlentySoapRequest_GetDeleteLog->ReferenceType = self::$_CATEGORY;
 			
 			$response = $this->getPlentySoap()->GetDeleteLog($oPlentySoapRequest_GetDeleteLog);
 			
 			$i = 0;
 			while($i < count($response->DeleteLogList->item)){
-				$referenceType = $response->DeleteLogList->item[$i]->ReferenceType;
 				$id = $response->DeleteLogList->item[$i]->ReferenceValue;
-				if($referenceType == self::$_ITEM){
-					$this->deleteItem($id);
-				}elseif($referenceType == self::$_CATEGORY){
-					$this->deleteCategory($id);
-				}
+				$this->deleteCategory($id);
 				$i++;
 			}
 		} catch(Exception $e)
@@ -73,28 +66,13 @@ class Adapter_DeletionRun extends PlentySoapCall
 		
 		$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
-		$this->getLogger()->info(":: Loeschvorgang: Artikel, Kategorien  - beendet ::");
+		$this->getLogger()->info(":: Loeschvorgang: Kategorien  - beendet ::");
 		echo "\n";
 	}
 	
-	private function deleteItem($plenty_item_id){
-		$result = false;
-		$magento_item_id = $this->getMagentoItemID($plenty_item_id);
-		if($magento_item_id != NULL){
-			$result = self::$magentoClient->call(self::$magentoSession, 'catalog_product.delete', $magento_item_id);
-		}
-		if ($result) {
-			$this->getLogger ()->info ( __FUNCTION__ . ':: Deleted Magento Item: ' . $magento_item_id );
-			$this->deleteItemIdFromDB($plenty_item_id);
-		} else {
-			$this->getLogger ()->info ( __FUNCTION__ . ':: Magento Item ' . $magento_item_id . ' not exist (skip)' );
-		}
-	}
-	
 	private function deleteCategory($plenty_category_id){
-		$result = false;
 		$magento_category_id = $this->getMagentoCategoryID($plenty_category_id);
-		if($magento_category_id != NULL){
+		if(!empty($magento_category_id)){
 			try{
 				$result = self::$magentoClient->call(self::$magentoSession, 'catalog_category.delete', $magento_category_id);
 			}catch (Exception $e){
@@ -103,17 +81,10 @@ class Adapter_DeletionRun extends PlentySoapCall
 		}
 		if ($result) {
 			$this->getLogger ()->info ( __FUNCTION__ . ':: Deleted Magento Category: ' . $magento_category_id );
-			$this->deleteCategoryIdFromDB($plenty_category_id);
+			$this->removeMapping($plenty_category_id);
 		} else {
-			$this->getLogger ()->info ( __FUNCTION__ . ':: Magento Item ' . $magento_category_id . ' not exist (skip)' );
+			$this->getLogger ()->info ( __FUNCTION__ . ':: Magento Category ' . $magento_category_id . ' not exist (skip)' );
 		}
-	}
-	
-	private function getMagentoItemID($plenty_item_id){
-		$query = 'SELECT `magento_item_id` FROM `plenty_magento_item_mapping`'.DBUtils::buildWhere( array( 'plenty_item_id' => $plenty_item_id));
-		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
-		return $result->fetchAssoc()["magento_item_id"];
 	}
 	
 	private function getMagentoCategoryID($plenty_category_id){
@@ -123,14 +94,8 @@ class Adapter_DeletionRun extends PlentySoapCall
 		return $result->fetchAssoc()["magento_id"];
 	}
 	
-	private function deleteCategoryIdFromDB($plenty_category_id){
+	private function removeMapping($plenty_category_id){
 		$query = 'DELETE FROM `plenty_magento_category_mapping`'.DBUtils::buildWhere( array( 'plenty_id' => $plenty_category_id));
-		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		$result = DBQuery::getInstance()->delete($query);
-	}
-	
-	private function deleteItemIdFromDB($plenty_item_id){
-		$query = 'DELETE FROM `plenty_magento_item_mapping`'.DBUtils::buildWhere( array( 'plenty_item_id' => $plenty_item_id));
 		$this->getLogger()->debug(__FUNCTION__.' '.$query);
 		$result = DBQuery::getInstance()->delete($query);
 	}

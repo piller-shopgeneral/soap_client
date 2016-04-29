@@ -25,6 +25,13 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 		$this->initMagentoController ();
 	}
 	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateItemsImages)) {
+			self::$instance = new SoapCall_UpdateItemsImages();
+		}
+		return self::$instance;
+	}
+	
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
 		$magentoSoapClient->doAuthentification ();
@@ -132,9 +139,11 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 	}
 	
 	private function addMapping($plenty_image_id, $magento_item_id, $magento_file_name){
-		$query = 'INSERT INTO `plenty_magento_images_mapping` '.DBUtils::buildInsert(	array(	'plenty_image_id' => $plenty_image_id, 'magento_item_id' =>	$magento_item_id, 'magento_file_name' =>	$magento_file_name));
-		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		DBQuery::getInstance()->insert($query);
+		if(!empty($plenty_image_id) && !empty($magento_item_id) && !empty($magento_file_name)){
+			$query = 'INSERT INTO `plenty_magento_images_mapping` '.DBUtils::buildInsert(	array(	'plenty_image_id' => $plenty_image_id, 'magento_item_id' =>	$magento_item_id, 'magento_file_name' =>	$magento_file_name));
+			$this->getLogger()->debug(__FUNCTION__.' '.$query);
+			DBQuery::getInstance()->insert($query);
+		}
 	}
 	
 	private function getMagentoItemID($plenty_item_id){

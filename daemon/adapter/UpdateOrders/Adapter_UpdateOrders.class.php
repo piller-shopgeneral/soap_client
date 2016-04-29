@@ -21,6 +21,13 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		parent::__construct ( __CLASS__ );
 		$this->initMagentoController ();
 	}
+	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateOrders)) {
+			self::$instance = new SoapCall_UpdateOrders();
+		}
+		return self::$instance;
+	}
 
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
