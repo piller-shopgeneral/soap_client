@@ -64,8 +64,6 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 					$tmp[] = $row;
 				}
 					
-				var_dump($tmp);
-					
 				$magento_image_name = $tmp[0]["magento_file_name"];
 				$magento_item_id = $tmp[0]["magento_item_id"];
 					
@@ -73,6 +71,19 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 				if($success){
 					$this->removeImageFromDB($result[$c]);
 					$this->getLogger()->info(":: Loesche Artikelbild: ".$magento_image_name." (Magento Artikel ".$magento_item_id.")");
+					
+					$itemImages = $this->getImagesByItem($magento_item_id);
+					
+					if($itemImages->getNumRows() > 0){
+						while($row = $itemImages->fetchAssoc()){
+							$tmp2[] = $row;
+						}
+						
+						$productId = $tmp2[0]["magento_item_id"];
+						$fileName = $tmp2[0]["magento_file_name"];
+						
+						$this->setMainImg($productId, $fileName);
+					}
 				}
 				$c++;
 			}
@@ -83,7 +94,7 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 		
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Loeschvorgang: Artikelbilder  - beendet ::");
-		$this->getLogger()->info("\n");
+		echo "\n";
 	}
 	
 	private function removeImageFromMagento($magento_image_name, $magento_item_id){
@@ -101,7 +112,7 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 		$img = 0;
 		while($i < $totalPages){
 			$itemByPage = $this->getItemsImagesByPage($i);
-				
+			
 			$e = 0;
 			while($e < count($itemByPage->ItemsImages->item)){
 				$plentyImageIds[$img] = $itemByPage->ItemsImages->item[$e]->ImageID;
@@ -111,6 +122,22 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 			$i++;
 		}
 		return $plentyImageIds;
+	}
+	
+	private function setMainImg($productId, $fileName){
+		$result = self::$magentoClient->call(
+				self::$magentoSession,
+				'catalog_product_attribute_media.update',
+				array(
+						$productId,
+						$fileName,
+						array('types' => array (
+									'thumbnail',
+									'small_image',
+									'image'
+						))
+				)
+		);
 	}
 	
 	private function getImages() {
@@ -128,6 +155,13 @@ class SoapCall_DeletionRunItemsImages extends PlentySoapCall {
 		$oPlentySoapRequest_GetItemsImages->LastUpdateTo = time();
 		$response = $this->getPlentySoap()->GetItemsImages($oPlentySoapRequest_GetItemsImages);
 		return $response;
+	}
+	
+	private function getImagesByItem($magento_item_id){
+		$query = 'SELECT * FROM `plenty_magento_images_mapping`'.DBUtils::buildWhere( array( 'magento_item_id' => $magento_item_id));
+		$this->getLogger()->debug(__FUNCTION__.' '.$query);
+		$result = DBQuery::getInstance()->select($query, 'DBQueryResult');
+		return $result;
 	}
 	
 	private function removeImageFromDB($plenty_image_id){

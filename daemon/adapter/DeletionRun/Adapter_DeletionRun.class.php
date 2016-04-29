@@ -59,7 +59,6 @@ class Adapter_DeletionRun extends PlentySoapCall
 			while($i < count($response->DeleteLogList->item)){
 				$referenceType = $response->DeleteLogList->item[$i]->ReferenceType;
 				$id = $response->DeleteLogList->item[$i]->ReferenceValue;
-					
 				if($referenceType == self::$_ITEM){
 					$this->deleteItem($id);
 				}elseif($referenceType == self::$_CATEGORY){

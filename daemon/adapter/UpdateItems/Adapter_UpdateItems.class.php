@@ -73,7 +73,7 @@ class Adapter_UpdateItems extends PlentySoapCall
 	  	$this->setLastUpdate($this->lastUpdateTo);
 		self::$magentoClient->endSession(self::$magentoSession);
 		$this->getLogger()->info(":: Update: Artikel  - beendet ::");
-		echo "\n";
+		$this->getLogger()->info("\n");
 	}
 		
 	private function parseResponse($response)
@@ -183,6 +183,8 @@ class Adapter_UpdateItems extends PlentySoapCall
 		$item->setDescription($itemTexts->ItemTexts->item[0]->LongDescription);
 		$item->setShortDescription($itemTexts->ItemTexts->item[0]->MetaDescription); //$itemTexts->ItemTexts->item[0]->ShortDescription
 		$item->setWeight($itemBase->PriceSet->WeightInGramm);
+		$item->setTaxClassId(0);
+		
 		if($itemBase->Availability->Inactive === 0){
 			$item->setStatus(1);
 		}else {
@@ -197,14 +199,6 @@ class Adapter_UpdateItems extends PlentySoapCall
 			$item->setSpecialPrice($itemBase->PriceSet->Price1);
 		}
 		
-		if($itemBase->PriceSet->VAT == 7){
-			$item->setTaxClassId(2);
-		} elseif ($itemBase->PriceSet->VAT == 19){
-			$item->setTaxClassId(1);
-		}else {
-			$item->setTaxClassId(0);
-		}
-		
 		$item->setMetaTitle($itemBase->Texts->Name);
 		$item->setMetaKeyword($itemBase->Texts->Keywords);
 		$item->setMetaDescription($itemTexts->ItemTexts->item[0]->MetaDescription);
@@ -213,9 +207,11 @@ class Adapter_UpdateItems extends PlentySoapCall
 	}
 	
 	private function addDBMapping($plentyItemID, $magentoItemID){
-		$query = 'REPLACE INTO `plenty_magento_item_mapping` '.DBUtils::buildInsert(	array(	'plenty_item_id' => $plentyItemID, 'magento_item_id'	=>	$magentoItemID));
-		$this->getLogger()->debug(__FUNCTION__.' '.$query);
-		$result = DBQuery::getInstance()->replace($query, 'DBQueryResult');
+		if(!empty($plentyItemID) && !empty($magentoItemID)){
+			$query = 'REPLACE INTO `plenty_magento_item_mapping` '.DBUtils::buildInsert(	array(	'plenty_item_id' => $plentyItemID, 'magento_item_id'	=>	$magentoItemID));
+			$this->getLogger()->debug(__FUNCTION__.' '.$query);
+			$result = DBQuery::getInstance()->replace($query, 'DBQueryResult');
+		}
 	}
 	
 	private function checkLastUpdate(){

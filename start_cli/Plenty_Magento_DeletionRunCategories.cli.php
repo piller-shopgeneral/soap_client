@@ -12,8 +12,8 @@
  */
 
 require_once realpath(dirname(__FILE__).'/../').'/config/basic.inc.php';
-require_once ROOT.'examples/DeletionRun/SoapCall_DeletionRun.class.php';
+require_once ROOT.'examples/DeletionRunCategories/SoapCall_DeletionRunCategories.class.php';
 
-SoapCall_DeletionRun::getInstance()->execute();
+SoapCall_DeletionRunCategories::getInstance()->execute();
 
 ?>
