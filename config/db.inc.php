@@ -1,23 +1,23 @@
 <?php
 
-define('SQL_DATA_SOURCE', 'vps266804.ovh.net');
+define('SQL_DATA_SOURCE', '');
 
 /*
  * enter the name of the database
  */
-define('SQL_DATA_BASE', 'soap_db');
+define('SQL_DATA_BASE', '');
 
 /*
  * database username
  */
-define('SQL_USERNAME', 'shopgeneral');
+define('SQL_USERNAME', '');
 
 /*
  * database password
  * 
  * please use a (more) secure password
  */
-define('SQL_PASSWORD', 'cKwsuHeLyJt7yRqP');
+define('SQL_PASSWORD', '');
 
 /*
  * database port (default: 3306)
