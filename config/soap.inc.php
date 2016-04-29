@@ -6,21 +6,21 @@
  * 
  * please enter your own wsdl url
  */
-define('WSDL_URL', 'http://fittaste24.plentymarkets-x1.com/plenty/api/soap/version115/?xml');
+define('WSDL_URL', '');
 
 /*
  * soap user name
  * 
  * please enter your own user
  */
-define('SOAP_USER', 'Wadim');
+define('SOAP_USER', '');
 
 /*
  * soap password
  * 
  * please enter your own password
  */
-define('SOAP_PASSWORD', 'Plenty123456!');
+define('SOAP_PASSWORD', '');
 
 
 /*
