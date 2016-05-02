@@ -109,7 +109,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 				if($response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Key == "OrderID"){
 					$plenty_order_id = $response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Value;
 					$this->addOrderMapping($plenty_order_id, $magento_order_id, $plenty_customer_id, $magento_order_info["customer_id"]);
-					$this->removeOrderFromDatabase($magento_order_id);
+					//$this->removeOrderFromDatabase($magento_order_id);
 				}
 				$i++;
 			}
@@ -143,6 +143,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			$oPlentySoapObject_OrderItem->Price = $magento_order_info["items"][$i]["price_incl_tax"];
 			$oPlentySoapObject_OrderItem->Currency = "EUR";
 			$oPlentySoapObject_OrderItem->WarehouseID = 1;
+			
 			$oArrayOfPlentysoapobject_orderitem->item[$i] = $oPlentySoapObject_OrderItem;
 			$i++;
 		}
@@ -159,8 +160,8 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
 		
 		$order_status = $magento_order_info["status"];
-		if($order_status == "complete"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 5;
+		if($order_status == "processing"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 4.1;
 		}
 
 		return $oPlentySoapObject_OrderHead;

@@ -185,7 +185,7 @@ class SoapCall_UpdateItems extends PlentySoapCall
 		$item->setDescription($itemTexts->ItemTexts->item[0]->LongDescription);
 		$item->setShortDescription($itemTexts->ItemTexts->item[0]->MetaDescription); //$itemTexts->ItemTexts->item[0]->ShortDescription
 		$item->setWeight($itemBase->PriceSet->WeightInGramm);
-		$item->setTaxClassId(0);
+		$item->setTaxClassId(2);
 		
 		if($itemBase->Availability->Inactive === 0){
 			$item->setStatus(1);

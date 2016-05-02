@@ -166,8 +166,8 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
 		
 		$order_status = $magento_order_info["status"];
-		if($order_status == "complete"){
-			$oPlentySoapObject_OrderHead->OrderStatus = 5;
+		if($order_status == "processing"){
+			$oPlentySoapObject_OrderHead->OrderStatus = 4.1;
 		}
 
 		return $oPlentySoapObject_OrderHead;
