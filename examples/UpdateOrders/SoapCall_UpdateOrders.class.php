@@ -141,19 +141,6 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 			$oPlentySoapObject_OrderItem->Quantity = $magento_order_info["items"][$i]["qty_ordered"];
 			$oPlentySoapObject_OrderItem->Price = floatval($magento_order_info["items"][$i]["price_incl_tax"]);
 			$oPlentySoapObject_OrderItem->Currency = "EUR";
-			
-			echo $magento_order_info["shipping_address"]["country_id"];
-			if($magento_order_info["shipping_address"]["country_id"] == "DE"){
-				$oPlentySoapObject_OrderItem->VAT = 7;
-				$oPlentySoapObject_OrderItem->StorageLocationIDs = 6;
-			}else if($magento_order_info["shipping_address"]["country_id"] == "LU"){
-				$oPlentySoapObject_OrderItem->VAT = 3;
-				$oPlentySoapObject_OrderItem->StorageLocationIDs = 3;
-			}else if($magento_order_info["shipping_address"]["country_id"] == "AT"){
-				$oPlentySoapObject_OrderItem->VAT = 7;
-				$oPlentySoapObject_OrderItem->StorageLocationIDs = 5;
-			}
-			
 			$oArrayOfPlentysoapobject_orderitem->item[$i] = $oPlentySoapObject_OrderItem;
 			$i++;
 		}
@@ -167,7 +154,7 @@ class SoapCall_UpdateOrders extends PlentySoapCall {
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
-		$oPlentySoapObject_OrderHead->StoreID = 3;
+		$oPlentySoapObject_OrderHead->StoreID = 0;
 		
 		$order_status = $magento_order_info["status"];
 		if($order_status == "processing"){
