@@ -24,8 +24,8 @@ class Adapter_DeletionRunItemsImages extends PlentySoapCall
 	}
 	
 	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_DeletionRunItemsImages)) {
-			self::$instance = new SoapCall_DeletionRunItemsImages();
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_DeletionRunItemsImages)) {
+			self::$instance = new Adapter_DeletionRunItemsImages();
 		}
 		return self::$instance;
 	}

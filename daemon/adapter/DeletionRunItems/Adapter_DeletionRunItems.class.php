@@ -30,6 +30,13 @@ class Adapter_DeletionRunItems extends PlentySoapCall
 		self::$magentoClient = $magentoSoapClient->getSoapClient ();
 	}
 	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_DeletionRunItems)) {
+			self::$instance = new Adapter_DeletionRunItems();
+		}
+		return self::$instance;
+	}
+	
 	/*
 	 * (non-PHPdoc) @see PlentySoapCall::execute()
 	*/

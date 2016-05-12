@@ -12,8 +12,8 @@
  */
 
 require_once realpath(dirname(__FILE__).'/../').'/config/basic.inc.php';
-require_once ROOT.'examples/UpdateItemsImages/SoapCall_UpdateItemsImages.class.php';
+require_once ROOT.'daemon/adapter/UpdateItemsImages/Adapter_UpdateItemsImages.class.php';
 
-SoapCall_UpdateItemsImages::getInstance()->execute();
+Adapter_UpdateItemsImages::getInstance()->execute();
 
 ?>

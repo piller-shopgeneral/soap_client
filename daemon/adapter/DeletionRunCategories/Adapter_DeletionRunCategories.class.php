@@ -27,6 +27,13 @@ class Adapter_DeletionRunCategories extends PlentySoapCall
 		parent::__construct ( __CLASS__ );
 		$this->initMagentoController ();
 	}
+	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_DeletionRunCategories)) {
+			self::$instance = new Adapter_DeletionRunCategories();
+		}
+		return self::$instance;
+	}
 
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();

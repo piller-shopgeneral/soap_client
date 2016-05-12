@@ -25,6 +25,13 @@ class Adapter_UpdateOrderStatus extends PlentySoapCall
 		$this->initMagentoController ();
 	}
 	
+	public static function getInstance() {
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_UpdateOrderStatus)) {
+			self::$instance = new Adapter_UpdateOrderStatus();
+		}
+		return self::$instance;
+	}
+	
 	private function initMagentoController() {
 		$magentoSoapClient = MagentoSoapClient::getInstance ();
 		$magentoSoapClient->doAuthentification ();

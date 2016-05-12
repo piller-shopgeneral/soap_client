@@ -27,8 +27,8 @@ class Adapter_UpdateCategories extends PlentySoapCall
 	}
 	
 	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateCategories)) {
-			self::$instance = new SoapCall_UpdateCategories();
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_UpdateCategories)) {
+			self::$instance = new Adapter_UpdateCategories();
 		}
 		return self::$instance;
 	}

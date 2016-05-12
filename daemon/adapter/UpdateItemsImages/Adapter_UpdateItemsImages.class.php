@@ -26,8 +26,8 @@ class Adapter_UpdateItemsImages extends PlentySoapCall
 	}
 	
 	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateItemsImages)) {
-			self::$instance = new SoapCall_UpdateItemsImages();
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_UpdateItemsImages)) {
+			self::$instance = new Adapter_UpdateItemsImages();
 		}
 		return self::$instance;
 	}

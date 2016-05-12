@@ -12,8 +12,8 @@
  */
 
 require_once realpath(dirname(__FILE__).'/../').'/config/basic.inc.php';
-require_once ROOT.'examples/DeletionRunItemsImages/SoapCall_DeletionRunItemsImages.class.php';
+require_once ROOT.'daemon/adapter/DeletionRunItemsImages/Adapter_DeletionRunItemsImages.class.php';
 
-SoapCall_DeletionRunItemsImages::getInstance()->execute();
+Adapter_DeletionRunItemsImages::getInstance()->execute();
 
 ?>

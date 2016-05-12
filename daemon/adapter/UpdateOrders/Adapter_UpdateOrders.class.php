@@ -23,8 +23,8 @@ class Adapter_UpdateOrders extends PlentySoapCall
 	}
 	
 	public static function getInstance() {
-		if (! isset ( self::$instance ) || ! (self::$instance instanceof SoapCall_UpdateOrders)) {
-			self::$instance = new SoapCall_UpdateOrders();
+		if (! isset ( self::$instance ) || ! (self::$instance instanceof Adapter_UpdateOrders)) {
+			self::$instance = new Adapter_UpdateOrders();
 		}
 		return self::$instance;
 	}
@@ -116,6 +116,7 @@ class Adapter_UpdateOrders extends PlentySoapCall
 			while($i < count($response->ResponseMessages->item[0]->SuccessMessages->item)){
 				if($response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Key == "OrderID"){
 					$plenty_order_id = $response->ResponseMessages->item[0]->SuccessMessages->item[$i]->Value;
+					$this->addOrderNote($plenty_order_id, "Liefertag: ".$magento_order_info["deliverydate"][0]["value"]);
 					$this->addOrderMapping($plenty_order_id, $magento_order_id, $plenty_customer_id, $magento_order_info["customer_id"]);
 					//$this->removeOrderFromDatabase($magento_order_id);
 				}
@@ -146,13 +147,28 @@ class Adapter_UpdateOrders extends PlentySoapCall
 			$oPlentySoapObject_OrderItem = new PlentySoapObject_OrderItem ();
  			$oPlentySoapObject_OrderItem->ItemID = $this->getPlentyItemID($magento_order_info["items"][$i]["product_id"]);
 			$oPlentySoapObject_OrderItem->Quantity = $magento_order_info["items"][$i]["qty_ordered"];
-			//$oPlentySoapObject_OrderItem->Price = floatval($magento_order_info["items"][$i]["price_incl_tax"]);
+			$oPlentySoapObject_OrderItem->Price = floatval($magento_order_info["items"][$i]["price_incl_tax"]);
 			$oPlentySoapObject_OrderItem->Currency = "EUR";
-			$oPlentySoapObject_OrderItem->VAT = 25;
+
 			$oArrayOfPlentysoapobject_orderitem->item[$i] = $oPlentySoapObject_OrderItem;
 			$i++;
 		}
 		return $oArrayOfPlentysoapobject_orderitem;
+	}
+	
+	private function addOrderNote($plenty_order_id, $order_note){
+		$oPlentySoapRequestObject_AddOrderNotes = new PlentySoapRequestObject_AddOrderNotes();
+		$oPlentySoapRequestObject_AddOrderNotes->OrderID = $plenty_order_id;
+		$oPlentySoapRequestObject_AddOrderNotes->OrderNote = $order_note;
+		$oPlentySoapRequestObject_AddOrderNotes->UserID = 5;
+		
+		$oArrayOfPlentysoaprequestobject_addordernotes = new ArrayOfPlentysoaprequestobject_addordernotes();
+		$oArrayOfPlentysoaprequestobject_addordernotes->item = $oPlentySoapRequestObject_AddOrderNotes;
+		
+		$oPlentySoapRequest_AddOrderNotes = new PlentySoapRequest_AddOrderNotes();
+		$oPlentySoapRequest_AddOrderNotes->AddOrderNotes = $oArrayOfPlentysoaprequestobject_addordernotes;
+		
+		$result = $this->getPlentySoap()->AddOrderNotes($oPlentySoapRequest_AddOrderNotes);
 	}
 	
 	private function createOrderHead($magento_order_info, $plenty_customer_id){
@@ -161,7 +177,17 @@ class Adapter_UpdateOrders extends PlentySoapCall
 		$oPlentySoapObject_OrderHead->ExternalOrderID = $magento_order_info["increment_id"];
 		$oPlentySoapObject_OrderHead->ShippingCosts = $magento_order_info["shipping_incl_tax"];
 		$oPlentySoapObject_OrderHead->DeliveryAddressID = $magento_order_info["shipping_address"]["address_id"];
-		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
+ 		$oPlentySoapObject_OrderHead->EstimatedTimeOfShipment = $magento_order_info["deliverydate"][0]["value"];
+		$oPlentySoapObject_OrderHead->StoreID = 0;
+		$oPlentySoapObject_OrderHead->WarehouseID = 1;
+		
+		if($magento_order_info["shipping_address"]["country_id"] == "DE"){
+			$oPlentySoapObject_OrderHead->ShippingProfileID = 8;
+		}else if($magento_order_info["shipping_address"]["country_id"] == "LU"){
+			$oPlentySoapObject_OrderHead->ShippingProfileID = 10;
+		}else if($magento_order_info["shipping_address"]["country_id"] == "AT"){
+			$oPlentySoapObject_OrderHead->ShippingProfileID = 7;
+		}
 		
 		$order_status = $magento_order_info["status"];
 		if($order_status == "processing"){

@@ -2,7 +2,7 @@
 
 require_once ROOT.'lib/soap/call/PlentySoapCall.abstract.php';
 require_once ROOT.'lib/soap/client/MagentoSoapClient.php';
-require_once ROOT.'examples/UpdateItems/MagentoItem.class.php';
+require_once ROOT.'daemon/adapter/UpdateItems/MagentoItem.class.php';
 
 /**
  * Save all country of delivery names to local datatable.
@@ -29,9 +29,9 @@ class Adapter_UpdateItems extends PlentySoapCall
 	
 	public static function getInstance()
 	{
-		if( !isset(self::$instance) || !(self::$instance instanceof SoapCall_UpdateItems) )
+		if( !isset(self::$instance) || !(self::$instance instanceof Adapter_UpdateItems) )
 		{
-			self::$instance = new SoapCall_UpdateItems();
+			self::$instance = new Adapter_UpdateItems();
 		}
 		return self::$instance;
 	}
